@@ -9,7 +9,6 @@ Lightweight package with optimized advanced version of PlayerPrefs. Under the ho
 using Extensions.Unity.PlayerPrefsEx;
 
 // Static Getters                        // Static Setters
-PlayerPrefsEx.GetJson<Player>("key");     PlayerPrefsEx.SetJson<Player>("key", new Player());
 PlayerPrefsEx.GetInt("key");              PlayerPrefsEx.SetInt("key", 10);         
 PlayerPrefsEx.GetBool("key");             PlayerPrefsEx.SetBool("key", false);        
 PlayerPrefsEx.GetFloat("key");            PlayerPrefsEx.SetFloat("key", 2.123f);       
@@ -20,6 +19,7 @@ PlayerPrefsEx.GetVector2("key");          PlayerPrefsEx.SetVector2("key", Vector
 PlayerPrefsEx.GetVector2Int("key");       PlayerPrefsEx.SetVector2Int("key", Vector2Int.up);  
 PlayerPrefsEx.GetVector3("key");          PlayerPrefsEx.SetVector3("key", Vector3.up);     
 PlayerPrefsEx.GetVector3Int("key");       PlayerPrefsEx.SetVector3Int("key", Vector3Int.up);
+PlayerPrefsEx.GetJson<Player>("key");     PlayerPrefsEx.SetJson<Player>("key", new Player());
 ```
 
 ### Variables API Usage
