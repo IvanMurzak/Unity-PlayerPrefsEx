@@ -8,11 +8,28 @@ namespace Extensions.Unity.PlayerPrefsEx.Tests
     public class PlayerPrefsInstancesTest
     {
         const string Key = "PlayerPrefsEx-TestKey";
-
+        Type[] types = new[]
+        {
+            typeof(BigInt),
+            typeof(bool),
+            typeof(DateTime),
+            typeof(float),
+            typeof(int),
+            typeof(string),
+            typeof(Vector2),
+            typeof(Vector2Int),
+            typeof(Vector3),
+            typeof(Vector3Int)
+        };
+        void DeleteKeyAllTypes(string key)
+        {
+            foreach (var type in types)
+                PlayerPrefsEx.DeleteKey(key, type);
+        }
         [Test]
         public void SharedValueWithSameKeyBetweenInstancesString()
         {
-            PlayerPrefs.DeleteKey(Key);
+            DeleteKeyAllTypes(Key);
 
             var pp1 = new PlayerPrefsString(Key);
             var pp2 = new PlayerPrefsString(Key);
@@ -29,7 +46,7 @@ namespace Extensions.Unity.PlayerPrefsEx.Tests
         [Test]
         public void SharedValueWithSameKeyBetweenInstancesInt()
         {
-            PlayerPrefs.DeleteKey(Key);
+            DeleteKeyAllTypes(Key);
 
             var pp1 = new PlayerPrefsInt(Key);
             var pp2 = new PlayerPrefsInt(Key);
@@ -46,7 +63,7 @@ namespace Extensions.Unity.PlayerPrefsEx.Tests
         [Test]
         public void SharedValueWithSameKeyBetweenInstancesBool()
         {
-            PlayerPrefs.DeleteKey(Key);
+            DeleteKeyAllTypes(Key);
 
             var pp1 = new PlayerPrefsBool(Key);
             var pp2 = new PlayerPrefsBool(Key);
@@ -63,7 +80,7 @@ namespace Extensions.Unity.PlayerPrefsEx.Tests
         [Test]
         public void SharedValueWithSameKeyBetweenInstancesFloat()
         {
-            PlayerPrefs.DeleteKey(Key);
+            DeleteKeyAllTypes(Key);
 
             var pp1 = new PlayerPrefsFloat(Key);
             var pp2 = new PlayerPrefsFloat(Key);
@@ -80,7 +97,7 @@ namespace Extensions.Unity.PlayerPrefsEx.Tests
         [Test]
         public void SharedValueWithSameKeyBetweenInstancesBigInt()
         {
-            PlayerPrefs.DeleteKey(Key);
+            DeleteKeyAllTypes(Key);
 
             var pp1 = new PlayerPrefsBigInt(Key);
             var pp2 = new PlayerPrefsBigInt(Key);
@@ -97,7 +114,7 @@ namespace Extensions.Unity.PlayerPrefsEx.Tests
         [Test]
         public void SharedValueWithSameKeyBetweenInstancesDateTime()
         {
-            PlayerPrefs.DeleteKey(Key);
+            DeleteKeyAllTypes(Key);
 
             var pp1 = new PlayerPrefsDateTime(Key);
             var pp2 = new PlayerPrefsDateTime(Key);
@@ -114,7 +131,7 @@ namespace Extensions.Unity.PlayerPrefsEx.Tests
         [Test]
         public void SharedValueWithSameKeyBetweenInstancesVector2()
         {
-            PlayerPrefs.DeleteKey(Key);
+            DeleteKeyAllTypes(Key);
 
             var pp1 = new PlayerPrefsVector2(Key);
             var pp2 = new PlayerPrefsVector2(Key);
@@ -131,7 +148,7 @@ namespace Extensions.Unity.PlayerPrefsEx.Tests
         [Test]
         public void SharedValueWithSameKeyBetweenInstancesVector2Int()
         {
-            PlayerPrefs.DeleteKey(Key);
+            DeleteKeyAllTypes(Key);
 
             var pp1 = new PlayerPrefsVector2Int(Key);
             var pp2 = new PlayerPrefsVector2Int(Key);
@@ -148,7 +165,7 @@ namespace Extensions.Unity.PlayerPrefsEx.Tests
         [Test]
         public void SharedValueWithSameKeyBetweenInstancesVector3()
         {
-            PlayerPrefs.DeleteKey(Key);
+            DeleteKeyAllTypes(Key);
 
             var pp1 = new PlayerPrefsVector3(Key);
             var pp2 = new PlayerPrefsVector3(Key);
@@ -165,7 +182,7 @@ namespace Extensions.Unity.PlayerPrefsEx.Tests
         [Test]
         public void SharedValueWithSameKeyBetweenInstancesVector3Int()
         {
-            PlayerPrefs.DeleteKey(Key);
+            DeleteKeyAllTypes(Key);
 
             var pp1 = new PlayerPrefsVector3Int(Key);
             var pp2 = new PlayerPrefsVector3Int(Key);
@@ -178,6 +195,45 @@ namespace Extensions.Unity.PlayerPrefsEx.Tests
             pp1.Value = Vector3Int.down;
 
             Assert.AreEqual(pp1.Value, pp2.Value);
+        }
+
+        [Test]
+        public void NonSharedValueBetweenSameKeyDifferentTypes()
+        {
+            DeleteKeyAllTypes(Key);
+
+            var vBigInt = BigInt.Parse("123123123123123123123123");
+            var vBool = true;
+            var vDateTime = DateTime.MinValue + TimeSpan.FromDays(10000);
+            var vFloat = 23.2372f;
+            var vInt = 235;
+            var vString = "asdfjhk;lqwer";
+            var vVector2 = Vector2.one * 123.123f;
+            var vVector2Int = Vector2Int.one * 783;
+            var vVector3 = Vector3.one * 3323.123f;
+            var vVector3Int = Vector3Int.one * 2767;
+
+            var ppBigInt = new PlayerPrefsBigInt(Key, vBigInt);
+            var ppBool = new PlayerPrefsBool(Key, vBool);
+            var ppDateTime = new PlayerPrefsDateTime(Key, vDateTime);
+            var ppFloat = new PlayerPrefsFloat(Key, vFloat);
+            var ppInt = new PlayerPrefsInt(Key, vInt);
+            var ppString = new PlayerPrefsString(Key, vString);
+            var ppVector2 = new PlayerPrefsVector2(Key, vVector2);
+            var ppVector2Int = new PlayerPrefsVector2Int(Key, vVector2Int);
+            var ppVector3 = new PlayerPrefsVector3(Key, vVector3);
+            var ppVector3Int = new PlayerPrefsVector3Int(Key, vVector3Int);
+
+            Assert.AreEqual(vBigInt, ppBigInt.Value);
+            Assert.AreEqual(vBool, ppBool.Value);
+            Assert.AreEqual(vDateTime, ppDateTime.Value);
+            Assert.AreEqual(vFloat, ppFloat.Value);
+            Assert.AreEqual(vInt, ppInt.Value);
+            Assert.AreEqual(vString, ppString.Value);
+            Assert.AreEqual(vVector2, ppVector2.Value);
+            Assert.AreEqual(vVector2Int, ppVector2Int.Value);
+            Assert.AreEqual(vVector3, ppVector3.Value);
+            Assert.AreEqual(vVector3Int, ppVector3Int.Value);
         }
     }
 }

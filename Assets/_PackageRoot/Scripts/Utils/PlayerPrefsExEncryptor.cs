@@ -1,6 +1,6 @@
 namespace Extensions.Unity.PlayerPrefsEx
 {
-    public static class PlayerPrefsEncryptor
+    public static class PlayerPrefsExEncryptor
     {
 #if UNITY_EDITOR
         public const int Hash = 666;

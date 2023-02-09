@@ -1,29 +1,24 @@
 using System;
+using UnityEngine;
 using BigInt = System.Numerics.BigInteger;
 
 namespace Extensions.Unity.PlayerPrefsEx
 {
-    public class PlayerPrefsBigInt
+    public class PlayerPrefsBigInt : PlayerPrefsEx<BigInt>
     {
-        public string Key { get; private set; }
-        public BigInt DefaultValue { get; private set; }
-        public BigInt Value
-        {
-            get => PlayerPrefs.GetBigInt(Key, DefaultValue);
-            set => PlayerPrefs.SetBigInt(Key, value);
-        }
+        public PlayerPrefsBigInt(string key, BigInt defaultValue = default) : base(key, defaultValue) { }
 
-        public PlayerPrefsBigInt(string key, BigInt defaultValue = default)
-        {
-            this.Key = key + PlayerPrefsEncryptor.Hash;
-            this.DefaultValue = defaultValue;
-        }
+        protected override string Serialize(BigInt value) => PlayerPrefsEx.SerializeBigInt(value);
+        protected override BigInt Deserialize(string value) => PlayerPrefsEx.DeserializeBigInt(value, DefaultValue);
     }
-    public static partial class PlayerPrefs
+    public static partial class PlayerPrefsEx
     {
-        public static BigInt GetBigInt(string key, BigInt defaultValue = default)
+        public static BigInt GetBigInt(string key, BigInt defaultValue = default) => GetEncryptedBigInt(key.EncryptKey<BigInt>(), defaultValue);
+        public static void SetBigInt(string key, BigInt value) => SetEncryptedBigInt(key.EncryptKey<BigInt>(), value);
+
+        internal static BigInt GetEncryptedBigInt(string encryptedKey, BigInt defaultValue = default)
         {
-            var str = UnityEngine.PlayerPrefs.GetString(key, null);
+            var str = PlayerPrefs.GetString(encryptedKey, null);
             if (str == null) return defaultValue;
 
             BigInt result;
@@ -31,9 +26,22 @@ namespace Extensions.Unity.PlayerPrefsEx
                 return result;
             return defaultValue;
         }
-        public static void SetBigInt(string key, BigInt value)
+        internal static void SetEncryptedBigInt(string encryptedKey, BigInt value)
         {
-            UnityEngine.PlayerPrefs.SetString(key, value.ToString());
+            PlayerPrefs.SetString(encryptedKey, value.ToString());
+        }
+
+        public static string SerializeBigInt(BigInt value) => value.ToString();
+        public static BigInt DeserializeBigInt(string value, BigInt defaultValue)
+        {
+            if (value == null) return defaultValue;
+
+            BigInt x;
+            if (BigInt.TryParse(value, out x))
+            {
+                return x;
+            }
+            return defaultValue;
         }
     }
 }

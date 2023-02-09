@@ -1,31 +1,35 @@
+using UnityEngine;
+
 namespace Extensions.Unity.PlayerPrefsEx
 {
-    public abstract class PlayerPrefs<T>
+    public abstract class PlayerPrefsEx<T>
     {
         public string Key { get; private set; }
+        public string EncryptedKey { get; private set; }
         public T DefaultValue { get; private set; }
         public T Value
         {
             get
             {
-                if (UnityEngine.PlayerPrefs.HasKey(Key))
+                if (PlayerPrefs.HasKey(EncryptedKey))
                 {
-                    return Deserialize(UnityEngine.PlayerPrefs.GetString(Key));
+                    return Deserialize(PlayerPrefs.GetString(EncryptedKey));
                 }
                 else
                 {
                     return DefaultValue;
                 }
             }
-            set => UnityEngine.PlayerPrefs.SetString(Key, Serialize(value));
+            set => PlayerPrefs.SetString(EncryptedKey, Serialize(value));
         }
 
         protected abstract string Serialize(T value);
         protected abstract T Deserialize(string value);
 
-        public PlayerPrefs(string key, T defaultValue = default)
+        public PlayerPrefsEx(string key, T defaultValue = default)
         {
-            this.Key = key + PlayerPrefsEncryptor.Hash;
+            this.Key = key;
+            this.EncryptedKey = key.EncryptKey<T>();
             this.DefaultValue = defaultValue;
         }
     }

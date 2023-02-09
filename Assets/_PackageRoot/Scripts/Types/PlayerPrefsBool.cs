@@ -1,30 +1,36 @@
+using UnityEngine;
+
 namespace Extensions.Unity.PlayerPrefsEx
 {
     public class PlayerPrefsBool
     {
         public string Key { get; private set; }
+        public string EncryptedKey { get; private set; }
         public bool DefaultValue { get; private set; }
         public bool Value
         {
-            get => PlayerPrefs.GetBool(Key, DefaultValue);
-            set => PlayerPrefs.SetBool(Key, value);
+            get => PlayerPrefsEx.GetEncryptedBool(EncryptedKey, DefaultValue);
+            set => PlayerPrefsEx.SetEncryptedBool(EncryptedKey, value);
         }
 
         public PlayerPrefsBool(string key, bool defaultValue = default)
         {
-            this.Key = key + PlayerPrefsEncryptor.Hash;
+            this.Key = key;
+            this.EncryptedKey = key.EncryptKey<bool>();
             this.DefaultValue = defaultValue;
         }
     }
-    public static partial class PlayerPrefs
+    public static partial class PlayerPrefsEx
     {
-        public static bool GetBool(string key, bool defaultValue = default)
+        public static bool GetBool(string key, bool defaultValue = default) => GetEncryptedBool(key.EncryptKey<bool>(), defaultValue);
+        public static void SetBool(string key, bool value) => SetEncryptedBool(key.EncryptKey<bool>(), value);
+        internal static bool GetEncryptedBool(string encryptedKey, bool defaultValue = default)
         {
-            return UnityEngine.PlayerPrefs.GetInt(key, defaultValue ? 1 : 0) == 1;
+            return PlayerPrefs.GetInt(encryptedKey, defaultValue ? 1 : 0) == 1;
         }
-        public static void SetBool(string key, bool value)
+        internal static void SetEncryptedBool(string encryptedKey, bool value)
         {
-            UnityEngine.PlayerPrefs.SetInt(key, value ? 1 : 0);
+            PlayerPrefs.SetInt(encryptedKey, value ? 1 : 0);
         }
     }
 }
