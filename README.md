@@ -99,7 +99,8 @@ There are two ways to do that
 ``` C#
 var player = new PlayerPrefsJson<Player>("player");
 ```
-## 2. Or to create dedicated class for more clean usage using `PlayerPrefsEx<T>`
+## 2. Using `PlayerPrefsEx<T>`
+Create dedicated class for more clean usage.
 ``` C#
 var enemy = PlayerPrefsEnemy("enemy");
 enemy.Value = new Enemy();
