@@ -19,7 +19,7 @@ PlayerPrefsEx.GetVector2("key");          PlayerPrefsEx.SetVector2("key", Vector
 PlayerPrefsEx.GetVector2Int("key");       PlayerPrefsEx.SetVector2Int("key", Vector2Int.up);  
 PlayerPrefsEx.GetVector3("key");          PlayerPrefsEx.SetVector3("key", Vector3.up);     
 PlayerPrefsEx.GetVector3Int("key");       PlayerPrefsEx.SetVector3Int("key", Vector3Int.up);
-PlayerPrefsEx.GetJson<Player>("key");     PlayerPrefsEx.SetJson<Player>("key", new Player()); // <<<-------- Generic
+PlayerPrefsEx.GetJson<Player>("key");     PlayerPrefsEx.SetJson<Player>("key", new Player()); // <<---- Generic
 ```
 
 ### Variables API Usage
