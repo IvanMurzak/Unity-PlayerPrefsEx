@@ -3,7 +3,6 @@
 
 Lightweight package with optimized advanced version of PlayerPrefs. Under the hood it uses the same PlayerPrefs system, but creates flexible wrapper for default system.
 
-
 ### Static API Usage
 ``` C#
 using Extensions.Unity.PlayerPrefsEx;
