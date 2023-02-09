@@ -1,108 +1,42 @@
-# Unity Package Template
-
-<img width="100%" alt="Stats" src="https://user-images.githubusercontent.com/9135028/198754538-4dd93fc6-7eb2-42ae-8ac6-d7361c39e6ef.gif"/>
-
-UPM (Unity Package Manager) ready GitHub repository for Unity. New Unity packages system is very easy to use and make your project much more cleaner. The repository helps you to create your own Unity package with dependecies.
-
-This is template repository for fast creation package for Unity which possible to import to Unity project through Package Manager in Unity Editor. The repository is universal for `Package Creation` and `Publishing` cycles.
-
-### Supported
-  - ✔️ [NPMJS](https://www.npmjs.com/)
-  - ✔️ [OpenUPM](https://openupm.com/)
-  - ✔️ [GitHub Packages](https://github.com/features/packages)
-  - ✔️ [UPM (Unity Package Manager)](https://docs.unity3d.com/Manual/upm-ui.html)
+# Unity PlayerPrefs
+Lightweight package with optimized advanced version of PlayerPrefs. Under the hood it uses the same PlayerPrefs system, but creates flexible wrapper for default system.
 
 
-# Unity Package Creation 
-[![image](https://user-images.githubusercontent.com/9135028/198753285-3d3c9601-0711-43c7-a8f2-d40ec42393a2.png)](https://github.com/IvanMurzak/Unity-Package-Template/generate)
-- Create your own repository on GitHub using this repository as template. Press the green button one line above.
-- Clone fresh created repository and open in Unity
-- Put files which should be packed into package under `Assets/_PackageRoot` folder. Everything outside the folder could be used for testing or demonstrate your plugin 
-<details>
-  <summary>>> Detailed data structure in package root folder</summary>
-  
-  [Unity guidlines](https://docs.unity3d.com/Manual/cus-layout.html) on how to organize files into package root directory
-  
-```
-  <root>
-  ├── package.json
-  ├── README.md
-  ├── CHANGELOG.md
-  ├── LICENSE.md
-  ├── Third Party Notices.md
-  ├── Editor
-  │   ├── [company-name].[package-name].Editor.asmdef
-  │   └── EditorExample.cs
-  ├── Runtime
-  │   ├── [company-name].[package-name].asmdef
-  │   └── RuntimeExample.cs
-  ├── Tests
-  │   ├── Editor
-  │   │   ├── [company-name].[package-name].Editor.Tests.asmdef
-  │   │   └── EditorExampleTest.cs
-  │   └── Runtime
-  │        ├── [company-name].[package-name].Tests.asmdef
-  │        └── RuntimeExampleTest.cs
-  ├── Samples~
-  │        ├── SampleFolder1
-  │        ├── SampleFolder2
-  │        └── ...
-  └── Documentation~
-       └── [package-name].md
+### Static API Usage
+``` C#
+using Extensions.Unity.PlayerPrefsEx;
+
+// Static Getters                        // Static Setters
+PlayerPrefsEx.GetJson<Player>("key");     PlayerPrefsEx.SetJson<Player>("key", new Player());
+PlayerPrefsEx.GetInt("key");              PlayerPrefsEx.SetInt("key", 10);         
+PlayerPrefsEx.GetBool("key");             PlayerPrefsEx.SetBool("key", false);        
+PlayerPrefsEx.GetFloat("key");            PlayerPrefsEx.SetFloat("key", 2.123f);       
+PlayerPrefsEx.GetString("key");           PlayerPrefsEx.SetString("key", "hello world");      
+PlayerPrefsEx.GetBigInt("key");           PlayerPrefsEx.SetBigInt("key", BigInteger.Parse("100"));
+PlayerPrefsEx.GetDateTime("key");         PlayerPrefsEx.SetDateTime("key", DateTime.Now);    
+PlayerPrefsEx.GetVector2("key");          PlayerPrefsEx.SetVector2("key", Vector2.up);     
+PlayerPrefsEx.GetVector2Int("key");       PlayerPrefsEx.SetVector2Int("key", Vector2Int.up);  
+PlayerPrefsEx.GetVector3("key");          PlayerPrefsEx.SetVector3("key", Vector3.up);     
+PlayerPrefsEx.GetVector3Int("key");       PlayerPrefsEx.SetVector3Int("key", Vector3Int.up);
 ```
 
-</details>
+### Variables API Usage
+``` C#
+var score = new PlayerPrefsInt("score");
+var record = new PlayerPrefsInt("recordScore");
 
-### Edit `Assets/_packageRoot/package.json` 
-
-#### Required steps
-- change `name` in format `my.packge.name.hello.world`
-- change `displayName`, `version`, `description` to any
-- change `unity` to setup minumum supported Unity version
-
-#### Optional steps
-- add yourself as an author in format `"author": { "name": "Ivan Murzak", "url": "https://github.com/IvanMurzak" },`
-- advanced editing and format `package.json` - read more about NPM package format [here](https://docs.npmjs.com/cli/v8/configuring-npm/package-json)
+score.Value = 100;
+record.Value = Mathf.Max(score.Value, record.Value);
+```
 
 
-# Publishing
-There are many platforms to publish your Package. You can read more about all alternative variants and their pros and cons [here](https://github.com/IvanMurzak/Unity-Package-Template/blob/master/AlternativeDestributionOptions.md) (OPTIONAL). This tutorial is targeted on NPMJS deployment.
-
-### Preparation (just once)
-- Install [NPM](https://nodejs.org/en/download/)
-- Create [NPMJS](https://npmjs.com) account
-- Execute script in Unity project `npmAddUser.bat` and sign-in to your account
-<details>
-  <summary>>> npmAddUser.bat script content</summary>
-  
-  It executes `npm adduser` command in package root folder
-  
-  ```
-cd Assets/_PackageRoot
-npm adduser
-  ```
-  
-</details>
-
-### Deploy
-Make sure you finished editing `package.json` and files in `Assets/_PackageRoot` folder. Because it is going to be public with no ability to discard it
-- Don't forget to increment `version` in `package.json` file. Versions lower than `1.0.0` gonna be showen in Unity as "preview"
-- Execute script in Unity project `npmPublish.bat` to publish your package to public
-
-<details>
-  <summary>>> npmPublish.bat script content</summary>
-  
-  First line in the script copies the `README.md` file to package root. Because the README should be in a package also, that is a part of package format.
-  It executes `npm publish` command in package root folder. The command publishes your package to NPMJS platform automatically
-  
-  ```
-xcopy .\README.md .\Assets\_PackageRoot\README.md /y
-cd Assets\_PackageRoot
-npm publish
-pause
-  ```
-  
-</details>
+### Extended default list of types to store.
+``` C#
+PlayerPrefsInt     PlayerPrefsVector2     PlayerPrefsDateTime
+PlayerPrefsFloat   PlayerPrefsVector2Int  PlayerPrefsJson<T>
+PlayerPrefsBool    PlayerPrefsVector3     PlayerPrefsEx<T>
+PlayerPrefsString  PlayerPrefsVector3Int
+```
 
 
 # Installation 
@@ -110,9 +44,69 @@ When you package is distributed, you can install it into any Unity project.
 
 - [Install OpenUPM-CLI](https://github.com/openupm/openupm-cli#installation)
 - Open command line in Unity project folder
-- `openupm --registry https://registry.npmjs.org add YOUR_PACKAGE_NAME`
+- Run the command:
+```
+openupm add extensions.unity.playerprefs
+```
 
 
-# Final view in Package Manager
+# Features
+ ✔️ Key is encrypted. Encrypted depends on a device. Much more harder for hackers to hack your data. Saved data at one device won't work on another one if someone copied it from device to device. In the same time for UnityEditor the device identifier is a constant. That means data copied between devices could be opened if you work on multiple machines and want to save/sent/load saved data on different machines.
 
-![image](https://user-images.githubusercontent.com/9135028/198777922-fdb71949-aee7-49c8-800f-7db885de9453.png)
+ ✔️ Create variable instance of any PlayerPrefs, work with it as a regular variable
+``` C#
+var score = PlayerPrefsInt("score");
+score.Value = 100;
+```
+
+ ✔️ Use generic types for creating PlayerPrefs variables
+``` C#
+var player = PlayerPrefsJson<Player>("player");
+player.Value = new Player();
+```
+
+ ✔️ Using multiple variables with the same Type and Key shares data between them.
+ ``` C#
+ var variableA = new PlayerPrefsString("message");
+ var variableB = new PlayerPrefsString("message");
+ 
+ variableA.Value = "hello world";
+ 
+ Debug.Log(variableA.Value); // "hello world";
+ Debug.Log(variableB.Value); // "hello world";
+ 
+ // variableA.Value == variableB.Value
+ // the same memory spot, just two links 
+ ```
+
+ ✔️ Generating unique `Key` for each type. No way to overlap value of another type by same key.
+``` C#
+var variableInt = new PlayerPrefsInt("SAME_KEY");
+var variableString = new PlayerPrefsString("SAME_KEY");
+
+variableInt.value = 100;
+variableString.Value = "abcd"
+
+// variableInt.value != variableString.value
+// there are dedicated storage for each type, generic inclusive
+```
+
+# Custom classes as variable
+There are two ways to do that
+## 1. Using `PlayerPrefsJson<T>`
+``` C#
+var player = new PlayerPrefsJson<Player>("player");
+```
+## 2. Or to create dedicated class for more clean usage using `PlayerPrefsEx<T>`
+``` C#
+var enemy = PlayerPrefsEnemy("enemy");
+enemy.Value = new Enemy();
+
+public class PlayerPrefsEnemy : PlayerPrefs<Enemy>
+{
+  public PlayerPrefsEnemy(string key, Enemy defaultValue = default) : base(key, defaultValue) { }
+
+  protected override string Serialize(Enemy value) => JsonUtility.ToJson(value);
+  protected override Enemy Deserialize(string value) => JsonUtility.FromJson<Enemy>(value);
+}
+```
