@@ -1,12 +1,8 @@
 {
-    "name": "extensions.unity.playerprefs.tests.editor",
-    "rootNamespace": "",
-    "references": [
-        "GUID:47551e40b67a88e4b8f4bf7442165f91"
-    ],
-    "includePlatforms": [
-        "Editor"
-    ],
+    "name": "Extensions.Unity.PlayerPrefsEx",
+    "rootNamespace": "Extensions.Unity.PlayerPrefsEx",
+    "references": [],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

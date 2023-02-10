@@ -1,0 +1,18 @@
+{
+    "name": "Extensions.Unity.PlayerPrefsEx.Tests.Editor",
+    "rootNamespace": "Extensions.Unity.PlayerPrefsEx.Tests",
+    "references": [
+        "GUID:47551e40b67a88e4b8f4bf7442165f91"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
