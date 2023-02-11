@@ -1,7 +1,7 @@
 # Unity PlayerPrefsEx
 ![npm](https://img.shields.io/npm/v/extensions.unity.playerprefsex) [![openupm](https://img.shields.io/npm/v/extensions.unity.playerprefsex?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/extensions.unity.playerprefsex/) ![License](https://img.shields.io/github/license/IvanMurzak/Unity-PlayerPrefsEx) [![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://stand-with-ukraine.pp.ua)
 
-Lightweight package with optimized advanced version of PlayerPrefs. Under the hood it uses the same PlayerPrefs system, but creates flexible wrapper for default system.
+PlayerPrefsEx is a lightweight package that is an extended version of PlayerPrefs from Unity. Under the hood, it uses the same PlayerPrefs system but creates a flexible wrapper for the default system.
 
 ### Static API Usage
 ``` C#
