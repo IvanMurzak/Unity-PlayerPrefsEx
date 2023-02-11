@@ -104,7 +104,7 @@ Create dedicated class for more clean usage.
 var enemy = PlayerPrefsEnemy("enemy");
 enemy.Value = new Enemy();
 
-public class PlayerPrefsEnemy : PlayerPrefs<Enemy>
+public class PlayerPrefsEnemy : PlayerPrefsEx<Enemy>
 {
   public PlayerPrefsEnemy(string key, Enemy defaultValue = default) : base(key, defaultValue) { }
 
