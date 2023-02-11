@@ -5,7 +5,7 @@ namespace Extensions.Unity.PlayerPrefsEx
 #if UNITY_EDITOR
         public const int Hash = 666;
 #else
-	    public static readonly int Hash = UnityEngine.SystemInfo.deviceUniqueIdentifier.GetHashCode();
+        public static readonly int Hash = UnityEngine.SystemInfo.deviceUniqueIdentifier.GetHashCode();
 #endif
     }
 }
