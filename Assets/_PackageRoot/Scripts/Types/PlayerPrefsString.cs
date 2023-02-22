@@ -2,11 +2,12 @@ using UnityEngine;
 
 namespace Extensions.Unity.PlayerPrefsEx
 {
-    public class PlayerPrefsString
+    public struct PlayerPrefsString : IPlayerPrefsEx<string>
     {
-        public string Key { get; private set; }
-        public string EncryptedKey { get; private set; }
-        public string DefaultValue { get; private set; }
+        public string Key { get; }
+        public string EncryptedKey { get; }
+        public string DefaultValue { get; }
+
         public string Value
         {
             get => PlayerPrefsEx.GetString(Key, DefaultValue);

@@ -1,15 +1,14 @@
 using System;
-using System.Globalization;
-
 using UnityEngine;
 
 namespace Extensions.Unity.PlayerPrefsEx
 {
-    public class PlayerPrefsDateTime
+    public struct PlayerPrefsDateTime : IPlayerPrefsEx<DateTime>
     {
-        public string Key { get; private set; }
-        public string EncryptedKey { get; private set; }
-        public DateTime DefaultValue { get; private set; }
+        public string Key { get; }
+        public string EncryptedKey { get; }
+        public DateTime DefaultValue { get; }
+
         public DateTime Value
         {
             get => PlayerPrefsEx.GetEncryptedDateTime(EncryptedKey, DefaultValue);

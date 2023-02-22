@@ -1,13 +1,12 @@
-using System;
 using UnityEngine;
 
 namespace Extensions.Unity.PlayerPrefsEx
 {
-    public class PlayerPrefsFloat
+    public struct PlayerPrefsFloat : IPlayerPrefsEx<float>
     {
-        public string Key { get; private set; }
-        public string EncryptedKey { get; private set; }
-        public float DefaultValue { get; private set; }
+        public string Key { get; }
+        public string EncryptedKey { get; }
+        public float DefaultValue { get; }
         public float Value
         {
             get => PlayerPrefsEx.GetEncryptedFloat(EncryptedKey, DefaultValue);

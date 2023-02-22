@@ -5,7 +5,7 @@ using BigInt = System.Numerics.BigInteger;
 
 namespace Extensions.Unity.PlayerPrefsEx.Tests
 {
-    public class PlayerPrefsInstancesTest
+    public class TestVariablesAPI
     {
         const string Key = "PlayerPrefsEx-TestKey";
         Type[] types = new[]
@@ -27,7 +27,7 @@ namespace Extensions.Unity.PlayerPrefsEx.Tests
                 PlayerPrefsEx.DeleteKey(key, type);
         }
         [Test]
-        public void SharedValueWithSameKeyBetweenInstancesString()
+        public void SharedValueBetweenVariablesAndStaticAPIsString()
         {
             DeleteKeyAllTypes(Key);
 
@@ -44,7 +44,7 @@ namespace Extensions.Unity.PlayerPrefsEx.Tests
             Assert.AreEqual(pp1.Value, pp2.Value);
         }
         [Test]
-        public void SharedValueWithSameKeyBetweenInstancesInt()
+        public void SharedValueBetweenVariablesAndStaticAPIsInt()
         {
             DeleteKeyAllTypes(Key);
 
@@ -61,7 +61,7 @@ namespace Extensions.Unity.PlayerPrefsEx.Tests
             Assert.AreEqual(pp1.Value, pp2.Value);
         }
         [Test]
-        public void SharedValueWithSameKeyBetweenInstancesBool()
+        public void SharedValueBetweenVariablesAndStaticAPIsBool()
         {
             DeleteKeyAllTypes(Key);
 
@@ -78,7 +78,7 @@ namespace Extensions.Unity.PlayerPrefsEx.Tests
             Assert.AreEqual(pp1.Value, pp2.Value);
         }
         [Test]
-        public void SharedValueWithSameKeyBetweenInstancesFloat()
+        public void SharedValueBetweenVariablesAndStaticAPIsFloat()
         {
             DeleteKeyAllTypes(Key);
 
@@ -95,7 +95,7 @@ namespace Extensions.Unity.PlayerPrefsEx.Tests
             Assert.AreEqual(pp1.Value, pp2.Value);
         }
         [Test]
-        public void SharedValueWithSameKeyBetweenInstancesBigInt()
+        public void SharedValueBetweenVariablesAndStaticAPIsBigInt()
         {
             DeleteKeyAllTypes(Key);
 
@@ -112,7 +112,7 @@ namespace Extensions.Unity.PlayerPrefsEx.Tests
             Assert.AreEqual(pp1.Value, pp2.Value);
         }
         [Test]
-        public void SharedValueWithSameKeyBetweenInstancesDateTime()
+        public void SharedValueBetweenVariablesAndStaticAPIsDateTime()
         {
             DeleteKeyAllTypes(Key);
 
@@ -129,7 +129,7 @@ namespace Extensions.Unity.PlayerPrefsEx.Tests
             Assert.AreEqual(pp1.Value, pp2.Value);
         }
         [Test]
-        public void SharedValueWithSameKeyBetweenInstancesVector2()
+        public void SharedValueBetweenVariablesAndStaticAPIsVector2()
         {
             DeleteKeyAllTypes(Key);
 
@@ -146,7 +146,7 @@ namespace Extensions.Unity.PlayerPrefsEx.Tests
             Assert.AreEqual(pp1.Value, pp2.Value);
         }
         [Test]
-        public void SharedValueWithSameKeyBetweenInstancesVector2Int()
+        public void SharedValueBetweenVariablesAndStaticAPIsVector2Int()
         {
             DeleteKeyAllTypes(Key);
 
@@ -163,7 +163,7 @@ namespace Extensions.Unity.PlayerPrefsEx.Tests
             Assert.AreEqual(pp1.Value, pp2.Value);
         }
         [Test]
-        public void SharedValueWithSameKeyBetweenInstancesVector3()
+        public void SharedValueBetweenVariablesAndStaticAPIsVector3()
         {
             DeleteKeyAllTypes(Key);
 
@@ -180,7 +180,7 @@ namespace Extensions.Unity.PlayerPrefsEx.Tests
             Assert.AreEqual(pp1.Value, pp2.Value);
         }
         [Test]
-        public void SharedValueWithSameKeyBetweenInstancesVector3Int()
+        public void SharedValueBetweenVariablesAndStaticAPIsVector3Int()
         {
             DeleteKeyAllTypes(Key);
 

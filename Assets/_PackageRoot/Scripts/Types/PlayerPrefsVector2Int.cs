@@ -2,12 +2,23 @@ using UnityEngine;
 
 namespace Extensions.Unity.PlayerPrefsEx
 {
-    public class PlayerPrefsVector2Int : PlayerPrefsEx<Vector2Int>
+    public struct PlayerPrefsVector2Int : IPlayerPrefsEx<Vector2Int>
     {
-        public PlayerPrefsVector2Int(string key, Vector2Int defaultValue = default) : base(key, defaultValue) { }
+        public string Key { get; }
+        public string EncryptedKey { get; }
+        public Vector2Int DefaultValue { get; }
+        public Vector2Int Value
+        {
+            get => PlayerPrefsEx.GetEncryptedVector2Int(EncryptedKey, DefaultValue);
+            set => PlayerPrefsEx.SetEncryptedVector2Int(EncryptedKey, value);
+        }
 
-        protected override string Serialize(Vector2Int value) => PlayerPrefsEx.SerializeVector2Int(value);
-        protected override Vector2Int Deserialize(string value) => PlayerPrefsEx.DeserializeVector2Int(value, DefaultValue);
+        public PlayerPrefsVector2Int(string key, Vector2Int defaultValue = default)
+        {
+            this.Key = key;
+            this.EncryptedKey = key.EncryptKey<Vector2Int>();
+            this.DefaultValue = defaultValue;
+        }
     }
 
     public static partial class PlayerPrefsEx

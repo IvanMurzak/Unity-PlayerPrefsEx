@@ -2,11 +2,11 @@ using UnityEngine;
 
 namespace Extensions.Unity.PlayerPrefsEx
 {
-    public class PlayerPrefsInt
+    public struct PlayerPrefsInt : IPlayerPrefsEx<int>
     {
-        public string Key { get; private set; }
-        public string EncryptedKey { get; private set; }
-        public int DefaultValue { get; private set; }
+        public string Key { get; }
+        public string EncryptedKey { get; }
+        public int DefaultValue { get; }
         public int Value
         {
             get => PlayerPrefsEx.GetEncryptedInt(EncryptedKey, DefaultValue);

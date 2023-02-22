@@ -2,11 +2,12 @@ using UnityEngine;
 
 namespace Extensions.Unity.PlayerPrefsEx
 {
-    public class PlayerPrefsBool
+    public struct PlayerPrefsBool : IPlayerPrefsEx<bool>
     {
-        public string Key { get; private set; }
-        public string EncryptedKey { get; private set; }
-        public bool DefaultValue { get; private set; }
+        public string Key { get; }
+        public string EncryptedKey { get; }
+        public bool DefaultValue { get; }
+
         public bool Value
         {
             get => PlayerPrefsEx.GetEncryptedBool(EncryptedKey, DefaultValue);
