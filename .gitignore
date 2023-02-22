@@ -51,6 +51,9 @@ ExportedObj/
 # Unity3D generated file on crash reports
 sysinfo.txt
 
+# Unity3D
+UserSettings/Layouts/default-2021.dwlt
+
 # Builds
 *.apk
 *.unitypackage
