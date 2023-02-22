@@ -1,15 +1,25 @@
-using System;
 using UnityEngine;
 using BigInt = System.Numerics.BigInteger;
 
 namespace Extensions.Unity.PlayerPrefsEx
 {
-    public class PlayerPrefsBigInt : PlayerPrefsEx<BigInt>
+    public struct PlayerPrefsBigInt : IPlayerPrefsEx<BigInt>
     {
-        public PlayerPrefsBigInt(string key, BigInt defaultValue = default) : base(key, defaultValue) { }
+        public string Key { get; }
+        public string EncryptedKey { get; }
+        public BigInt DefaultValue { get; }
+        public BigInt Value
+        { 
+            get => PlayerPrefsEx.GetBigInt(Key, DefaultValue);
+            set => PlayerPrefsEx.SetBigInt(Key, value);
+        }
 
-        protected override string Serialize(BigInt value) => PlayerPrefsEx.SerializeBigInt(value);
-        protected override BigInt Deserialize(string value) => PlayerPrefsEx.DeserializeBigInt(value, DefaultValue);
+        public PlayerPrefsBigInt(string key, BigInt defaultValue = default)
+        {
+            this.Key = key;
+            this.EncryptedKey = key.EncryptKey<BigInt>();
+            this.DefaultValue = defaultValue;
+        }
     }
     public static partial class PlayerPrefsEx
     {

@@ -2,12 +2,33 @@ using UnityEngine;
 
 namespace Extensions.Unity.PlayerPrefsEx
 {
-    public class PlayerPrefsJson<T> : PlayerPrefsEx<T>
+    public struct PlayerPrefsJson<T> : IPlayerPrefsEx<T>
     {
-        public PlayerPrefsJson(string key, T defaultValue = default) : base(key, defaultValue) { }
+        public string Key { get; }
+        public string EncryptedKey { get; }
+        public T DefaultValue { get; }
+        public T Value
+        {
+            get
+            {
+                if (PlayerPrefs.HasKey(EncryptedKey))
+                {
+                    return JsonUtility.FromJson<T>(PlayerPrefs.GetString(EncryptedKey));
+                }
+                else
+                {
+                    return DefaultValue;
+                }
+            }
+            set => PlayerPrefs.SetString(EncryptedKey, JsonUtility.ToJson(value));
+        }
 
-        protected override string Serialize(T value) => JsonUtility.ToJson(value);
-        protected override T Deserialize(string value) => JsonUtility.FromJson<T>(value); 
+        public PlayerPrefsJson(string key, T defaultValue = default)
+        {
+            this.Key = key;
+            this.EncryptedKey = key.EncryptKey<T>();
+            this.DefaultValue = defaultValue;
+        }
     }
     public static partial class PlayerPrefsEx
     {
