@@ -38,7 +38,7 @@ namespace Extensions.Unity.PlayerPrefsEx.Tests
         }
 
         [Test]
-        public void SharedValueByTheSameTypeAndKeyBetweenInstanceAndStaticAPIs()
+        public void SharedValueBetweenVariablesAndStaticAPIs()
         {
             DeleteKeyAllTypes(Key);
 
@@ -51,6 +51,67 @@ namespace Extensions.Unity.PlayerPrefsEx.Tests
             SharedValueByTheSameTypeAndKeyBetweenInstanceAndStaticAPIs(Key, PlayerPrefsEx.GetVector2, PlayerPrefsEx.SetVector2, new PlayerPrefsVector2(Key), Vector2.one * 100, Vector2.one * 100023);
             SharedValueByTheSameTypeAndKeyBetweenInstanceAndStaticAPIs(Key, PlayerPrefsEx.GetVector2Int, PlayerPrefsEx.SetVector2Int, new PlayerPrefsVector2Int(Key), Vector2Int.one * 100, Vector2Int.one * 100023);
             SharedValueByTheSameTypeAndKeyBetweenInstanceAndStaticAPIs(Key, PlayerPrefsEx.GetVector3, PlayerPrefsEx.SetVector3, new PlayerPrefsVector3(Key), Vector3.one * 100, Vector3.one * 100023);
+            SharedValueByTheSameTypeAndKeyBetweenInstanceAndStaticAPIs(Key, PlayerPrefsEx.GetVector3Int, PlayerPrefsEx.SetVector3Int, new PlayerPrefsVector3Int(Key), Vector3Int.one * 100, Vector3Int.one * 100023);
+        }
+        [Test]
+        public void SharedValueBetweenVariablesAndStaticAPIsBigInt()
+        {
+            DeleteKeyAllTypes(Key);
+            SharedValueByTheSameTypeAndKeyBetweenInstanceAndStaticAPIs(Key, PlayerPrefsEx.GetBigInt, PlayerPrefsEx.SetBigInt, new PlayerPrefsBigInt(Key), 123456, 38383838);
+        }
+        [Test]
+        public void SharedValueBetweenVariablesAndStaticAPIsBool()
+        {
+            DeleteKeyAllTypes(Key);
+            SharedValueByTheSameTypeAndKeyBetweenInstanceAndStaticAPIs(Key, PlayerPrefsEx.GetBool, PlayerPrefsEx.SetBool, new PlayerPrefsBool(Key), true, false);
+        }
+        [Test]
+        public void SharedValueBetweenVariablesAndStaticAPIsDateTime()
+        {
+            DeleteKeyAllTypes(Key);
+            SharedValueByTheSameTypeAndKeyBetweenInstanceAndStaticAPIs(Key, PlayerPrefsEx.GetDateTime, PlayerPrefsEx.SetDateTime, new PlayerPrefsDateTime(Key), DateTime.MaxValue - TimeSpan.FromDays(3), DateTime.MaxValue - TimeSpan.FromDays(3000));
+            
+        }
+        [Test]
+        public void SharedValueBetweenVariablesAndStaticAPIsFloat()
+        {
+            DeleteKeyAllTypes(Key);
+            SharedValueByTheSameTypeAndKeyBetweenInstanceAndStaticAPIs(Key, PlayerPrefsEx.GetFloat, PlayerPrefsEx.SetFloat, new PlayerPrefsFloat(Key), 123456.234f, 3838.002f);
+        }
+        [Test]
+        public void SharedValueBetweenVariablesAndStaticAPIsInt()
+        {
+            DeleteKeyAllTypes(Key);
+            SharedValueByTheSameTypeAndKeyBetweenInstanceAndStaticAPIs(Key, PlayerPrefsEx.GetInt, PlayerPrefsEx.SetInt, new PlayerPrefsInt(Key), 123456, 38383838);
+        }
+        [Test]
+        public void SharedValueBetweenVariablesAndStaticAPIsString()
+        {
+            DeleteKeyAllTypes(Key);
+            SharedValueByTheSameTypeAndKeyBetweenInstanceAndStaticAPIs(Key, PlayerPrefsEx.GetString, PlayerPrefsEx.SetString, new PlayerPrefsString(Key), "123456", "38383838");
+        }
+        [Test]
+        public void SharedValueBetweenVariablesAndStaticAPIsVector2()
+        {
+            DeleteKeyAllTypes(Key);
+            SharedValueByTheSameTypeAndKeyBetweenInstanceAndStaticAPIs(Key, PlayerPrefsEx.GetVector2, PlayerPrefsEx.SetVector2, new PlayerPrefsVector2(Key), Vector2.one * 100, Vector2.one * 100023);
+        }
+        [Test]
+        public void SharedValueBetweenVariablesAndStaticAPIsVector2Int()
+        {
+            DeleteKeyAllTypes(Key);
+            SharedValueByTheSameTypeAndKeyBetweenInstanceAndStaticAPIs(Key, PlayerPrefsEx.GetVector2Int, PlayerPrefsEx.SetVector2Int, new PlayerPrefsVector2Int(Key), Vector2Int.one * 100, Vector2Int.one * 100023);
+        }
+        [Test]
+        public void SharedValueBetweenVariablesAndStaticAPIsVector3()
+        {
+            DeleteKeyAllTypes(Key);
+            SharedValueByTheSameTypeAndKeyBetweenInstanceAndStaticAPIs(Key, PlayerPrefsEx.GetVector3, PlayerPrefsEx.SetVector3, new PlayerPrefsVector3(Key), Vector3.one * 100, Vector3.one * 100023);
+        }
+        [Test]
+        public void SharedValueBetweenVariablesAndStaticAPIsVector3Int()
+        {
+            DeleteKeyAllTypes(Key);
             SharedValueByTheSameTypeAndKeyBetweenInstanceAndStaticAPIs(Key, PlayerPrefsEx.GetVector3Int, PlayerPrefsEx.SetVector3Int, new PlayerPrefsVector3Int(Key), Vector3Int.one * 100, Vector3Int.one * 100023);
         }
     }
