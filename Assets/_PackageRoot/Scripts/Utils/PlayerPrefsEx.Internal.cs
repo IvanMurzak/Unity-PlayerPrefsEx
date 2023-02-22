@@ -5,11 +5,11 @@ namespace Extensions.Unity.PlayerPrefsEx
 {
     public static partial class PlayerPrefsEx
     {
-        internal static T GetEncrypted<T>(string encryptedKey, T defaultValue = default)
+        internal static T GetInternal<T>(string internalKey, T defaultValue = default)
         {
-            if (PlayerPrefs.HasKey(encryptedKey))
+            if (PlayerPrefs.HasKey(internalKey))
             {
-                var str = PlayerPrefs.GetString(encryptedKey);
+                var str = PlayerPrefs.GetString(internalKey);
                 if (string.IsNullOrEmpty(str))
                     return defaultValue;
                 return JsonUtility.FromJson<T>(str);
@@ -19,9 +19,9 @@ namespace Extensions.Unity.PlayerPrefsEx
                 return defaultValue;
             }
         }
-        internal static void SetEncrypted<T>(string encryptedKey, T value) => PlayerPrefs.SetString(encryptedKey, JsonUtility.ToJson(value));
+        internal static void SetInternal<T>(string internalKey, T value) => PlayerPrefs.SetString(internalKey, JsonUtility.ToJson(value));
 
-        internal static string EncryptKey<T>(this string key) => $"{typeof(T).Name}:{key}:{PlayerPrefsExEncryptor.Hash}";
-        internal static string EncryptKey(this string key, Type type) => $"{type.Name}:{key}:{PlayerPrefsExEncryptor.Hash}";
+        internal static string InternalKey<T>(this string key) => $"{typeof(T).Name}:{key}:{PlayerPrefsExEncryptor.Hash}";
+        internal static string InternalKey(this string key, Type type) => $"{type.Name}:{key}:{PlayerPrefsExEncryptor.Hash}";
     }
 }

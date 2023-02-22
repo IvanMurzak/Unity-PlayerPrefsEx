@@ -5,7 +5,7 @@ namespace Extensions.Unity.PlayerPrefsEx
     public struct PlayerPrefsString : IPlayerPrefsEx<string>
     {
         public string Key { get; }
-        public string EncryptedKey { get; }
+        public string InternalKey { get; }
         public string DefaultValue { get; }
 
         public string Value
@@ -17,15 +17,15 @@ namespace Extensions.Unity.PlayerPrefsEx
         public PlayerPrefsString(string key, string defaultValue = "")
         {
             this.Key = key;
-            this.EncryptedKey = key.EncryptKey<string>();
+            this.InternalKey = key.InternalKey<string>();
             this.DefaultValue = defaultValue;
         }
     }
     public static partial class PlayerPrefsEx
     {
-        public static string GetString(string key, string defaultValue = "") => GetEncryptedString(key.EncryptKey<string>(), defaultValue);
-        public static void SetString(string key, string value) => SetEncryptedString(key.EncryptKey<string>(), value);
-        internal static string GetEncryptedString(string encryptedKey, string defaultValue = "") => PlayerPrefs.GetString(encryptedKey, defaultValue);
-        internal static void SetEncryptedString(string encryptedKey, string value) => PlayerPrefs.SetString(encryptedKey, value);
+        public static string GetString(string key, string defaultValue = "") => GetInternalString(key.InternalKey<string>(), defaultValue);
+        public static void SetString(string key, string value) => SetInternalString(key.InternalKey<string>(), value);
+        internal static string GetInternalString(string InternalKey, string defaultValue = "") => PlayerPrefs.GetString(InternalKey, defaultValue);
+        internal static void SetInternalString(string InternalKey, string value) => PlayerPrefs.SetString(InternalKey, value);
     }
 }

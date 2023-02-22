@@ -6,27 +6,27 @@ namespace Extensions.Unity.PlayerPrefsEx
     public struct PlayerPrefsDateTime : IPlayerPrefsEx<DateTime>
     {
         public string Key { get; }
-        public string EncryptedKey { get; }
+        public string InternalKey { get; }
         public DateTime DefaultValue { get; }
 
         public DateTime Value
         {
-            get => PlayerPrefsEx.GetEncryptedDateTime(EncryptedKey, DefaultValue);
-            set => PlayerPrefsEx.SetEncryptedDateTime(EncryptedKey, value);
+            get => PlayerPrefsEx.GetInternalDateTime(InternalKey, DefaultValue);
+            set => PlayerPrefsEx.SetInternalDateTime(InternalKey, value);
         }
 
         public PlayerPrefsDateTime(string key, DateTime defaultValue = default)
         {
             this.Key = key;
-            this.EncryptedKey = key.EncryptKey<DateTime>();
+            this.InternalKey = key.InternalKey<DateTime>();
             this.DefaultValue = defaultValue;
         }
     }
     public static partial class PlayerPrefsEx
     {
-        public static DateTime GetDateTime(string key, DateTime defaultValue = default) => GetEncryptedDateTime(key.EncryptKey<DateTime>(), defaultValue);
-        public static void SetDateTime(string key, DateTime value) => SetEncryptedDateTime(key.EncryptKey<DateTime>(), value);
-        internal static DateTime GetEncryptedDateTime(string key, DateTime defaultValue = default)
+        public static DateTime GetDateTime(string key, DateTime defaultValue = default) => GetInternalDateTime(key.InternalKey<DateTime>(), defaultValue);
+        public static void SetDateTime(string key, DateTime value) => SetInternalDateTime(key.InternalKey<DateTime>(), value);
+        internal static DateTime GetInternalDateTime(string key, DateTime defaultValue = default)
         {
             var str = PlayerPrefs.GetString(key, null);
             if (str == null) return defaultValue;
@@ -37,7 +37,7 @@ namespace Extensions.Unity.PlayerPrefsEx
 
             return defaultValue;
         }
-        internal static void SetEncryptedDateTime(string key, DateTime value)
+        internal static void SetInternalDateTime(string key, DateTime value)
         {
             PlayerPrefs.SetString(key, value.Ticks.ToString());
         }

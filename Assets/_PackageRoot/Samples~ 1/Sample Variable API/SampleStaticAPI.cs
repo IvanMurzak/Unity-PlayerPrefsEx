@@ -41,16 +41,16 @@ public class SampleStaticAPI : MonoBehaviour
         Debug.Log(" ");
         Debug.Log("Print All");
         Debug.Log("--------------------------");
-        Debug.Log($"String: ----- {PlayerPrefsEx.GetString(key)}, Key = {PlayerPrefsEx.GetEncryptedKey<string>(key)}");
-        Debug.Log($"Int: -------- {PlayerPrefsEx.GetInt(key)}, Key = {PlayerPrefsEx.GetEncryptedKey<int>(key)}");
-        Debug.Log($"Float: ------ {PlayerPrefsEx.GetFloat(key)}, Key = {PlayerPrefsEx.GetEncryptedKey<float>(key)}");
-        Debug.Log($"Bool: ------- {PlayerPrefsEx.GetBool(key)}, Key = {PlayerPrefsEx.GetEncryptedKey<bool>(key)}");
-        Debug.Log($"BigInt: ----- {PlayerPrefsEx.GetBigInt(key)}, Key = {PlayerPrefsEx.GetEncryptedKey<BigInt>(key)}");
-        Debug.Log($"DateTime: --- {PlayerPrefsEx.GetDateTime(key)}, Key = {PlayerPrefsEx.GetEncryptedKey<DateTime>(key)}");
-        Debug.Log($"Vector2: ---- {PlayerPrefsEx.GetVector2(key)}, Key = {PlayerPrefsEx.GetEncryptedKey<Vector2>(key)}");
-        Debug.Log($"Vector2Int: - {PlayerPrefsEx.GetVector2Int(key)}, Key = {PlayerPrefsEx.GetEncryptedKey<Vector2Int>(key)}");
-        Debug.Log($"Vector3: ---- {PlayerPrefsEx.GetVector3(key)}, Key = {PlayerPrefsEx.GetEncryptedKey<Vector3>(key)}");
-        Debug.Log($"Vector3Int: - {PlayerPrefsEx.GetVector3Int(key)}, Key = {PlayerPrefsEx.GetEncryptedKey<Vector3Int>(key)}");
+        Debug.Log($"String: ----- {PlayerPrefsEx.GetString(key)}, Key = {PlayerPrefsEx.GetInternalKey<string>(key)}");
+        Debug.Log($"Int: -------- {PlayerPrefsEx.GetInt(key)}, Key = {PlayerPrefsEx.GetInternalKey<int>(key)}");
+        Debug.Log($"Float: ------ {PlayerPrefsEx.GetFloat(key)}, Key = {PlayerPrefsEx.GetInternalKey<float>(key)}");
+        Debug.Log($"Bool: ------- {PlayerPrefsEx.GetBool(key)}, Key = {PlayerPrefsEx.GetInternalKey<bool>(key)}");
+        Debug.Log($"BigInt: ----- {PlayerPrefsEx.GetBigInt(key)}, Key = {PlayerPrefsEx.GetInternalKey<BigInt>(key)}");
+        Debug.Log($"DateTime: --- {PlayerPrefsEx.GetDateTime(key)}, Key = {PlayerPrefsEx.GetInternalKey<DateTime>(key)}");
+        Debug.Log($"Vector2: ---- {PlayerPrefsEx.GetVector2(key)}, Key = {PlayerPrefsEx.GetInternalKey<Vector2>(key)}");
+        Debug.Log($"Vector2Int: - {PlayerPrefsEx.GetVector2Int(key)}, Key = {PlayerPrefsEx.GetInternalKey<Vector2Int>(key)}");
+        Debug.Log($"Vector3: ---- {PlayerPrefsEx.GetVector3(key)}, Key = {PlayerPrefsEx.GetInternalKey<Vector3>(key)}");
+        Debug.Log($"Vector3Int: - {PlayerPrefsEx.GetVector3Int(key)}, Key = {PlayerPrefsEx.GetInternalKey<Vector3Int>(key)}");
         Debug.Log("-------------------------- end");
     }
 

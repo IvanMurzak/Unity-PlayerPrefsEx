@@ -6,7 +6,7 @@ namespace Extensions.Unity.PlayerPrefsEx
     public struct PlayerPrefsBigInt : IPlayerPrefsEx<BigInt>
     {
         public string Key { get; }
-        public string EncryptedKey { get; }
+        public string InternalKey { get; }
         public BigInt DefaultValue { get; }
         public BigInt Value
         { 
@@ -17,18 +17,18 @@ namespace Extensions.Unity.PlayerPrefsEx
         public PlayerPrefsBigInt(string key, BigInt defaultValue = default)
         {
             this.Key = key;
-            this.EncryptedKey = key.EncryptKey<BigInt>();
+            this.InternalKey = key.InternalKey<BigInt>();
             this.DefaultValue = defaultValue;
         }
     }
     public static partial class PlayerPrefsEx
     {
-        public static BigInt GetBigInt(string key, BigInt defaultValue = default) => GetEncryptedBigInt(key.EncryptKey<BigInt>(), defaultValue);
-        public static void SetBigInt(string key, BigInt value) => SetEncryptedBigInt(key.EncryptKey<BigInt>(), value);
+        public static BigInt GetBigInt(string key, BigInt defaultValue = default) => GetInternalBigInt(key.InternalKey<BigInt>(), defaultValue);
+        public static void SetBigInt(string key, BigInt value) => SetInternalBigInt(key.InternalKey<BigInt>(), value);
 
-        internal static BigInt GetEncryptedBigInt(string encryptedKey, BigInt defaultValue = default)
+        internal static BigInt GetInternalBigInt(string InternalKey, BigInt defaultValue = default)
         {
-            var str = PlayerPrefs.GetString(encryptedKey, null);
+            var str = PlayerPrefs.GetString(InternalKey, null);
             if (str == null) return defaultValue;
 
             BigInt result;
@@ -36,9 +36,9 @@ namespace Extensions.Unity.PlayerPrefsEx
                 return result;
             return defaultValue;
         }
-        internal static void SetEncryptedBigInt(string encryptedKey, BigInt value)
+        internal static void SetInternalBigInt(string InternalKey, BigInt value)
         {
-            PlayerPrefs.SetString(encryptedKey, value.ToString());
+            PlayerPrefs.SetString(InternalKey, value.ToString());
         }
 
         public static string SerializeBigInt(BigInt value) => value.ToString();
