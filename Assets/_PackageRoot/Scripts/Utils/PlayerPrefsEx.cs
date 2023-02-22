@@ -56,5 +56,12 @@ namespace Extensions.Unity.PlayerPrefsEx
         // Summary:
         //     Saves all modified preferences.
         public static void Save() => UnityEngine.PlayerPrefs.Save();
+        //
+        // Summary:
+        //     Returns internal key. The internal key used for saving in PlayerPrefs.
+        //
+        // Parameters:
+        //   key:
+        public static string GetEncryptedKey<T>(string key) => EncryptKey<T>(key);
     }
 }
