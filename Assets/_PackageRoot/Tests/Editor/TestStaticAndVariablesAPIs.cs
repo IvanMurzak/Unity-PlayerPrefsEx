@@ -5,7 +5,7 @@ using BigInt = System.Numerics.BigInteger;
 
 namespace Extensions.Unity.PlayerPrefsEx.Tests
 {
-    public class PlayerPrefsInstancesAndStaticTest
+    public class TestStaticAndVariablesAPIs
     {
         const string Key = "PlayerPrefsEx-TestKey";
 
