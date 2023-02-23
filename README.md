@@ -18,7 +18,7 @@ PlayerPrefsEx.GetVector2("key");         PlayerPrefsEx.SetVector2("key", Vector2
 PlayerPrefsEx.GetVector2Int("key");      PlayerPrefsEx.SetVector2Int("key", Vector2Int.up);  
 PlayerPrefsEx.GetVector3("key");         PlayerPrefsEx.SetVector3("key", Vector3.up);     
 PlayerPrefsEx.GetVector3Int("key");      PlayerPrefsEx.SetVector3Int("key", Vector3Int.up);
-PlayerPrefsEx.GetJson<Player>("key");    PlayerPrefsEx.SetJson<Player>("key", new Player()); <--- Generic
+PlayerPrefsEx.GetJson<Player>("key");    PlayerPrefsEx.SetJson<Player>("key", new Player());
 ```
 
 ### Variables API Usage
@@ -33,10 +33,10 @@ record.Value = Mathf.Max(score.Value, record.Value);
 
 ### Extended default list of types to store.
 ``` C#
-PlayerPrefsInt     PlayerPrefsVector2     PlayerPrefsDateTime
-PlayerPrefsFloat   PlayerPrefsVector2Int  PlayerPrefsJson<T>
-PlayerPrefsBool    PlayerPrefsVector3     PlayerPrefsEx<T>
-PlayerPrefsString  PlayerPrefsVector3Int
+PlayerPrefsInt     PlayerPrefsVector2     PlayerPrefsBigInt
+PlayerPrefsFloat   PlayerPrefsVector2Int  PlayerPrefsDateTime
+PlayerPrefsBool    PlayerPrefsVector3     PlayerPrefsJson<T>
+PlayerPrefsString  PlayerPrefsVector3Int  PlayerPrefsEx<T>
 ```
 
 
@@ -92,8 +92,8 @@ variableString.Value = "abcd"
 // there are dedicated storage for each type, generic inclusive
 ```
 
-# Custom classes as variable
-There are two ways to do that
+# Custom data types
+There are two ways to do that.
 ## 1. Using `PlayerPrefsJson<T>`
 ``` C#
 var player = new PlayerPrefsJson<Player>("player");
@@ -106,9 +106,18 @@ enemy.Value = new Enemy();
 
 public class PlayerPrefsEnemy : PlayerPrefsEx<Enemy>
 {
-  public PlayerPrefsEnemy(string key, Enemy defaultValue = default) : base(key, defaultValue) { }
+  public PlayerPrefsEnemy(string key, Enemy defaultValue = default) : base(key, defaultValue) 
+  { 
 
-  protected override string Serialize(Enemy value) => JsonUtility.ToJson(value);
-  protected override Enemy Deserialize(string value) => JsonUtility.FromJson<Enemy>(value);
+  }
+
+  protected override Enemy Deserialize(string value)
+  {
+    return JsonUtility.FromJson<Enemy>(value);
+  }
+  protected override string Serialize(Enemy value)
+  {
+    return JsonUtility.ToJson(value);
+  }
 }
 ```

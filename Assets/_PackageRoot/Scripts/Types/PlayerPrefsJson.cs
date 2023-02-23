@@ -11,14 +11,14 @@ namespace Extensions.Unity.PlayerPrefsEx
         {
             get
             {
-                if (PlayerPrefs.HasKey(InternalKey))
-                {
-                    return JsonUtility.FromJson<T>(PlayerPrefs.GetString(InternalKey));
-                }
-                else
-                {
+                if (!PlayerPrefs.HasKey(InternalKey))
                     return DefaultValue;
-                }
+
+                var json = PlayerPrefs.GetString(InternalKey);
+                if (string.IsNullOrEmpty(json))
+                    return DefaultValue;
+                
+                return JsonUtility.FromJson<T>(json);
             }
             set => PlayerPrefs.SetString(InternalKey, JsonUtility.ToJson(value));
         }
