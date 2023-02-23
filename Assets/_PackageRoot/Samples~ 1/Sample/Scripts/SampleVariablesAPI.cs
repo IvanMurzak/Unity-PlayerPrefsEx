@@ -20,6 +20,7 @@ public class SampleVariablesAPI : MonoBehaviour
     PlayerPrefsVector2Int variableVector2Int = new PlayerPrefsVector2Int(Key);
     PlayerPrefsVector3 variableVector3 = new PlayerPrefsVector3(Key);
     PlayerPrefsVector3Int variableVector3Int = new PlayerPrefsVector3Int(Key);
+    PlayerPrefsJson<SampleData> variableSampleData = new PlayerPrefsJson<SampleData>(Key);
 
     void Start()
     {
@@ -40,6 +41,13 @@ public class SampleVariablesAPI : MonoBehaviour
         variableVector2Int.Value = Vector2Int.one * Random.Range(10, 1000);
         variableVector3.Value = Vector3.one * Random.Range(10, 1000);
         variableVector3Int.Value = Vector3Int.one * Random.Range(10, 1000);
+        variableSampleData.Value = new SampleData
+        {
+            array = new[] { Random.Range(10, 1000), Random.Range(10, 1000), Random.Range(10, 1000), Random.Range(10, 1000) },
+            color = new Color(Random.value, Random.value, Random.value),
+            count = Random.Range(1, 10),
+            name = $"Robot Alpha {Random.Range(1, 10)}"
+        };
     }
     void PrintAll()
     {
@@ -57,6 +65,7 @@ public class SampleVariablesAPI : MonoBehaviour
         Debug.Log($"Vector2Int: - {variableVector2Int.Value}, Key = {variableVector2Int.InternalKey}");
         Debug.Log($"Vector3: ---- {variableVector3.Value}, Key = {variableVector3.InternalKey}");
         Debug.Log($"Vector3Int: - {variableVector3Int.Value}, Key = {variableVector3Int.InternalKey}");
+        Debug.Log($"SampleData: - {variableSampleData.Value}, Key = {variableSampleData.InternalKey}");
         Debug.Log("-------------------------- end");
     }
 

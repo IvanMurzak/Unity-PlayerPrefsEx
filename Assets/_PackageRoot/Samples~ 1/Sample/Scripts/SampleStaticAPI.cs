@@ -27,6 +27,13 @@ public class SampleStaticAPI : MonoBehaviour
         PlayerPrefsEx.SetVector2Int(key, Vector2Int.one * Random.Range(10, 1000));
         PlayerPrefsEx.SetVector3(key, Vector3.one * Random.Range(10, 1000));
         PlayerPrefsEx.SetVector3Int(key, Vector3Int.one * Random.Range(10, 1000));
+        PlayerPrefsEx.SetJson(key, new SampleData
+        {
+            array = new[] { Random.Range(10, 1000), Random.Range(10, 1000), Random.Range(10, 1000), Random.Range(10, 1000) },
+            color = new Color(Random.value, Random.value, Random.value),
+            count = Random.Range(1, 10),
+            name = $"Robot Alpha {Random.Range(1, 10)}"
+        });
     }
     void PrintAll()
     {
@@ -44,6 +51,7 @@ public class SampleStaticAPI : MonoBehaviour
         Debug.Log($"Vector2Int: - {PlayerPrefsEx.GetVector2Int(key)}, Key = {PlayerPrefsEx.GetInternalKey<Vector2Int>(key)}");
         Debug.Log($"Vector3: ---- {PlayerPrefsEx.GetVector3(key)}, Key = {PlayerPrefsEx.GetInternalKey<Vector3>(key)}");
         Debug.Log($"Vector3Int: - {PlayerPrefsEx.GetVector3Int(key)}, Key = {PlayerPrefsEx.GetInternalKey<Vector3Int>(key)}");
+        Debug.Log($"SampleData: - {PlayerPrefsEx.GetJson<SampleData>(key)}, Key = {PlayerPrefsEx.GetInternalKey<SampleData>(key)}");
         Debug.Log("-------------------------- end");
     }
 
