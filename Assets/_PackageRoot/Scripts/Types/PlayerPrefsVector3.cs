@@ -5,31 +5,31 @@ namespace Extensions.Unity.PlayerPrefsEx
     public struct PlayerPrefsVector3 : IPlayerPrefsEx<Vector3>
     {
         public string Key { get; }
-        public string EncryptedKey { get; }
+        public string InternalKey { get; }
         public Vector3 DefaultValue { get; }
         public Vector3 Value
         {
-            get => PlayerPrefsEx.GetEncryptedVector3(EncryptedKey, DefaultValue);
-            set => PlayerPrefsEx.SetEncryptedVector3(EncryptedKey, value);
+            get => PlayerPrefsEx.GetInternalVector3(InternalKey, DefaultValue);
+            set => PlayerPrefsEx.SetInternalVector3(InternalKey, value);
         }
 
         public PlayerPrefsVector3(string key, Vector3 defaultValue = default)
         {
             this.Key = key;
-            this.EncryptedKey = key.EncryptKey<Vector3>();
+            this.InternalKey = key.InternalKey<Vector3>();
             this.DefaultValue = defaultValue;
         }
     }
     public static partial class PlayerPrefsEx
     {
-        public static Vector3 GetVector3(string key, Vector3 defaultValue = default) => GetEncryptedVector3(key.EncryptKey<Vector3>(), defaultValue);
-        public static void SetVector3(string key, Vector3 value) => SetEncryptedVector3(key.EncryptKey<Vector3>(), value);
-        internal static Vector3 GetEncryptedVector3(string encryptedKey, Vector3 defaultValue = default)
+        public static Vector3 GetVector3(string key, Vector3 defaultValue = default) => GetInternalVector3(key.InternalKey<Vector3>(), defaultValue);
+        public static void SetVector3(string key, Vector3 value) => SetInternalVector3(key.InternalKey<Vector3>(), value);
+        internal static Vector3 GetInternalVector3(string InternalKey, Vector3 defaultValue = default)
         {
-            var value = PlayerPrefs.GetString(encryptedKey, null);
+            var value = PlayerPrefs.GetString(InternalKey, null);
             return DeserializeVector3(value, defaultValue);
         }
-        internal static void SetEncryptedVector3(string encryptedKey, Vector3 value) => PlayerPrefs.SetString(encryptedKey, SerializeVector3(value));
+        internal static void SetInternalVector3(string InternalKey, Vector3 value) => PlayerPrefs.SetString(InternalKey, SerializeVector3(value));
         public static string SerializeVector3(Vector3 value) => $"{value.x}:{value.y}:{value.z}";
         public static Vector3 DeserializeVector3(string value, Vector3 defaultValue)
         {
