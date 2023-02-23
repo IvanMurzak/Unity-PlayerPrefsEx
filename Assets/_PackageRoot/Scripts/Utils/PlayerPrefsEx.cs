@@ -6,21 +6,6 @@ namespace Extensions.Unity.PlayerPrefsEx
     {
         //
         // Summary:
-        //     Returns Value from PlayerPrefs by specified Type and Key. If nothing exists by the Key and Type returns defaultValue
-        //
-        // Parameters:
-        //   key:
-        //   defaultValue:
-        public static T Get<T>(string key, T defaultValue = default) => GetInternal<T>(key.InternalKey<T>(), defaultValue);
-        // Summary:
-        //     Set Value to PlayerPrefs by specified Type and Key.
-        //
-        // Parameters:
-        //   key:
-        //   value:
-        public static void Set<T>(string key, T value) => SetInternal<T>(key.InternalKey<T>(), value);
-        //
-        // Summary:
         //     Returns true if the given key exists in PlayerPrefs, otherwise returns false.
         //
         // Parameters:

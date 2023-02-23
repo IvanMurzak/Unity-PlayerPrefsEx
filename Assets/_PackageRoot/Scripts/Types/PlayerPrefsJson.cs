@@ -32,14 +32,31 @@ namespace Extensions.Unity.PlayerPrefsEx
     }
     public static partial class PlayerPrefsEx
     {
+        //
+        // Summary:
+        //     Returns Value from PlayerPrefs by specified Type and Key deserialized from Json. If nothing exists by the Key and Type returns defaultValue
+        //
+        // Parameters:
+        //   key:
+        //   defaultValue:
         public static T GetJson<T>(string key, T defaultValue = default)
         {
-            var str = PlayerPrefs.GetString(key.InternalKey<T>());
+            var internalKey = key.InternalKey<T>();
+            if (!PlayerPrefs.HasKey(internalKey))
+                return defaultValue;
+
+            var str = PlayerPrefs.GetString(internalKey);
             if (string.IsNullOrEmpty(str))
                 return defaultValue;
 
             return JsonUtility.FromJson<T>(str);
         }
+        // Summary:
+        //     Set Value to PlayerPrefs by specified Type and Key serialized to Json.
+        //
+        // Parameters:
+        //   key:
+        //   value:
         public static void SetJson<T>(string key, T value)
         {
             var json = JsonUtility.ToJson(value);
