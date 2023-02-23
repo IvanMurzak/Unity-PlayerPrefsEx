@@ -13,17 +13,10 @@ public class SampleStaticAPI : MonoBehaviour
         SetAll();
         PrintAll();
     }
-    
-    void DeleteAll()
-    {
-        textKey.text = $"Key = {key}";
-        Debug.Log("Delete All");
-        PlayerPrefsEx.DeleteAll();
-    }
     void SetAll()
     {
         textKey.text = $"Key = {key}";
-        Debug.Log("Set All");
+        Debug.Log("Set All - Static API");
         PlayerPrefsEx.SetString(key, $"{Random.value * Random.Range(10, 1000)}");
         PlayerPrefsEx.SetInt(key, Random.Range(10, 1000));
         PlayerPrefsEx.SetFloat(key, Random.Range(10, 1000) * Random.value);
@@ -39,7 +32,7 @@ public class SampleStaticAPI : MonoBehaviour
     {
         textKey.text = $"Key = {key}";
         Debug.Log(" ");
-        Debug.Log("Print All");
+        Debug.Log("Print All - Static API");
         Debug.Log("--------------------------");
         Debug.Log($"String: ----- {PlayerPrefsEx.GetString(key)}, Key = {PlayerPrefsEx.GetInternalKey<string>(key)}");
         Debug.Log($"Int: -------- {PlayerPrefsEx.GetInt(key)}, Key = {PlayerPrefsEx.GetInternalKey<int>(key)}");
@@ -60,20 +53,17 @@ public class SampleStaticAPI : MonoBehaviour
     public string key = "myKey";                                         //
     public Button btnSetAll;                                             //
     public Button btnPrintAll;                                           //
-    public Button btnDeleteAll;                                          //
     public TextMeshProUGUI textKey;                                      //
                                                                          //
     void OnEnable()                                                      //
     {                                                                    //
         btnSetAll.onClick.AddListener(SetAll);                           //
         btnPrintAll.onClick.AddListener(PrintAll);                       //
-        btnDeleteAll.onClick.AddListener(DeleteAll);                     //
     }                                                                    //
     void OnDisable()                                                     //
     {                                                                    //
         btnSetAll.onClick.RemoveListener(SetAll);                        //
         btnPrintAll.onClick.RemoveListener(PrintAll);                    //
-        btnDeleteAll.onClick.RemoveListener(DeleteAll);                  //
     }                                                                    //
     //                                                                   //
     // ------------------------------------------------------------------//
