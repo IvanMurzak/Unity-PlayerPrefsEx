@@ -9,7 +9,7 @@ PlayerPrefsEx is a lightweight package that is an extended version of PlayerPref
 ``` C#
 using Extensions.Unity.PlayerPrefsEx;
 
-// Static Getters                        // Static Setters
+// Static API Getters                    // Static API Setters
 PlayerPrefsEx.GetInt("key");             PlayerPrefsEx.SetInt("key", 10);         
 PlayerPrefsEx.GetBool("key");            PlayerPrefsEx.SetBool("key", false);        
 PlayerPrefsEx.GetFloat("key");           PlayerPrefsEx.SetFloat("key", 2.123f);       
@@ -20,17 +20,30 @@ PlayerPrefsEx.GetVector2("key");         PlayerPrefsEx.SetVector2("key", Vector2
 PlayerPrefsEx.GetVector2Int("key");      PlayerPrefsEx.SetVector2Int("key", Vector2Int.up);  
 PlayerPrefsEx.GetVector3("key");         PlayerPrefsEx.SetVector3("key", Vector3.up);     
 PlayerPrefsEx.GetVector3Int("key");      PlayerPrefsEx.SetVector3Int("key", Vector3Int.up);
+
+// Static API Getters Generic            // Static API Setters Generic
 PlayerPrefsEx.GetJson<Player>("key");    PlayerPrefsEx.SetJson<Player>("key", new Player());
+PlayerPrefsEx.GetJson<Enemy>("key");     PlayerPrefsEx.SetJson<Enemy>("key", new Enemy());
+PlayerPrefsEx.GetJson<Data>("key");      PlayerPrefsEx.SetJson<Data>("key", new Data());
 ```
 
 ### Variables API Usage
 
 ``` C#
+// Variables API
 var score = new PlayerPrefsInt("score");
 var record = new PlayerPrefsInt("recordScore");
 
 score.Value = 100;
 record.Value = Mathf.Max(score.Value, record.Value);
+
+// Variables API Generic
+var player = new PlayerPrefsJson<Player>("player");
+var enemy = new PlayerPrefsJson<Enemy>("enemy");
+
+var tempPlayer = player.Value; // take value from PlayerPrefs
+tempPlayer.Health -= enemy.Damage; // change internal properties
+player.Value = tempPlayer; // save back changed instance
 ```
 
 ### Extended default list of types to store
