@@ -114,7 +114,7 @@ Follow `Edit -> Project Settings -> Player` to add the define.
 
 This approach is better, because you have 100% guarantee that no one PlayerPrefsEx API gonna be used before your setup `Unique Key` option at runtime.
 
-// Image
+![image](https://user-images.githubusercontent.com/9135028/221062492-6801321e-ee4b-4aad-9eab-ed6da777584b.png)
 
 ## Activate Unique Key: option 2 (not recommended)
 
@@ -153,18 +153,18 @@ enemy.Value = new Enemy();
 
 public class PlayerPrefsEnemy : PlayerPrefsEx<Enemy>
 {
-  public PlayerPrefsEnemy(string key, Enemy defaultValue = default) : base(key, defaultValue) 
-  { 
+    public PlayerPrefsEnemy(string key, Enemy defaultValue = default) : base(key, defaultValue) 
+    { 
 
-  }
+    }
 
-  protected override Enemy Deserialize(string value)
-  {
-    return JsonUtility.FromJson<Enemy>(value);
-  }
-  protected override string Serialize(Enemy value)
-  {
-    return JsonUtility.ToJson(value);
-  }
+    protected override Enemy Deserialize(string value)
+    {
+        return JsonUtility.FromJson<Enemy>(value);
+    }
+    protected override string Serialize(Enemy value)
+    {
+        return JsonUtility.ToJson(value);
+    }
 }
 ```
