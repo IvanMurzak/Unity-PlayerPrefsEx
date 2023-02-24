@@ -42,7 +42,7 @@ var player = new PlayerPrefsJson<Player>("player");
 var enemy = new PlayerPrefsJson<Enemy>("enemy");
 
 var tempPlayer = player.Value; // take value from PlayerPrefs
-tempPlayer.Health -= enemy.Damage; // change internal properties
+tempPlayer.Health -= enemy.Value.Damage; // change internal properties
 player.Value = tempPlayer; // save back changed instance
 ```
 
