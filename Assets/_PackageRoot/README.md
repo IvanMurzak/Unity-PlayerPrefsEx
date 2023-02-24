@@ -104,8 +104,9 @@ variableString.Value = "abcd"
 
 PlayerPrefsEx supports simple protection from hackers who change default values for PlayerPrefs. That is approach to use unique key per device keys, simply adding device id to the end of a key. As a result external modification of PlayerPrefs could work only at single device and can't be spread like a hacked build of a game.
 
-⚠️ Keep in mind! Cloud safe could not work for single user with multiple devices.
-⚠️ Highly not recommended to change the feature in runtime. Because data stored under disabled `unique key` feature are unaccessible from enabled `unique key`, the same works in opposite way.
+> ⚠️ Keep in mind! Cloud safe could not work for single user with multiple devices.
+
+> ⚠️ Highly not recommended to change the feature in runtime. Because data stored under disabled `unique key` feature are unaccessible from enabled `unique key`, the same works in opposite way.
 
 ## Activate Unique Key: option 1 (recommended)
 
@@ -120,7 +121,7 @@ This approach is better, because you have 100% guarantee that no one PlayerPrefs
 
 You can make it in runtime by simply change value of `PlayerPrefsEx.Settings.UniqueKeyPerDevice`.
 
-⚠️ Highly not recommended to change the feature in runtime. Because data stored under disabled `unique key` feature are unaccessible from enabled `unique key`, the same works in opposite way.
+> ⚠️ Highly not recommended to change the feature in runtime. Because data stored under disabled `unique key` feature are unaccessible from enabled `unique key`, the same works in opposite way.
 
 ``` C#
 PlayerPrefsEx.Settings.UniqueKeyPerDevice = true;
