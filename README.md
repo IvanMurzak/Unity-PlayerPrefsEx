@@ -32,10 +32,7 @@ PlayerPrefsEx.GetJson<Data>("key");      PlayerPrefsEx.SetJson<Data>("key", new 
 ``` C#
 // Variables API
 var score = new PlayerPrefsInt("score");
-var record = new PlayerPrefsInt("recordScore");
-
 score.Value = 100;
-record.Value = Mathf.Max(score.Value, record.Value);
 
 // Variables API Generic
 var player = new PlayerPrefsJson<Player>("player");
