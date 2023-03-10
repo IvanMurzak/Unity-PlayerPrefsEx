@@ -52,7 +52,7 @@ ExportedObj/
 sysinfo.txt
 
 # Unity3D
-UserSettings/Layouts/default-2021.dwlt
+/UserSettings/Layouts/
 
 # Builds
 *.apk
