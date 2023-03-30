@@ -1,11 +1,12 @@
 {
   "name": "extensions.unity.playerprefsex",
   "displayName": "PlayerPrefsEx",
-  "author": { "name": "Ivan Murzak", "url": "https://github.com/IvanMurzak" },
-  "version": "2.0.0",
+  "author": {
+    "name": "Ivan Murzak",
+    "url": "https://github.com/IvanMurzak"
+  },
+  "version": "2.0.1",
   "unity": "2018.3",
   "description": "Lightweight package with optimized advanced version of PlayerPrefs. Under the hood it uses the same PlayerPrefs system, but creates flexible wrapper for default system.",
-  "dependencies": {
-    
-  }
+  "dependencies": {}
 }
