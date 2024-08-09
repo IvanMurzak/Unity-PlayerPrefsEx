@@ -5,8 +5,17 @@
     "name": "Ivan Murzak",
     "url": "https://github.com/IvanMurzak"
   },
-  "version": "2.0.1",
+  "version": "2.0.2",
   "unity": "2018.3",
   "description": "Lightweight package with optimized advanced version of PlayerPrefs. Under the hood it uses the same PlayerPrefs system, but creates flexible wrapper for default system.",
+  "keywords": [
+    "playerprefs",
+    "reactive variables",
+    "reactive playerprefs",
+    "unity",
+    "data",
+    "data saving",
+    "reactive data"
+  ],
   "dependencies": {}
 }
