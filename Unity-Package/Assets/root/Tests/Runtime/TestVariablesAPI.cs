@@ -3,11 +3,12 @@ using UnityEngine;
 using NUnit.Framework;
 using BigInt = System.Numerics.BigInteger;
 
-namespace Extensions.Unity.PlayerPrefsEx.Tests
+namespace Extensions.Unity.PlayerPrefsEx.Tests.Runtime
 {
     public class TestVariablesAPI
     {
         const string Key = "PlayerPrefsEx-TestKey";
+
         Type[] types = new[]
         {
             typeof(BigInt),

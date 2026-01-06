@@ -3,13 +3,13 @@ using UnityEngine;
 using NUnit.Framework;
 using BigInt = System.Numerics.BigInteger;
 
-namespace Extensions.Unity.PlayerPrefsEx.Tests
+namespace Extensions.Unity.PlayerPrefsEx.Editor.Tests
 {
     public class TestStaticAndVariablesAPIs
     {
         const string Key = "PlayerPrefsEx-TestKey";
 
-        Type[] types = new[] 
+        Type[] types = new[]
         {
             typeof(BigInt),
             typeof(bool),
@@ -70,7 +70,7 @@ namespace Extensions.Unity.PlayerPrefsEx.Tests
         {
             DeleteKeyAllTypes(Key);
             SharedValueByTheSameTypeAndKeyBetweenInstanceAndStaticAPIs(Key, PlayerPrefsEx.GetDateTime, PlayerPrefsEx.SetDateTime, new PlayerPrefsDateTime(Key), DateTime.MaxValue - TimeSpan.FromDays(3), DateTime.MaxValue - TimeSpan.FromDays(3000));
-            
+
         }
         [Test]
         public void SharedValueBetweenVariablesAndStaticAPIsFloat()

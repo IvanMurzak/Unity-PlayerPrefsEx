@@ -3,13 +3,13 @@ using UnityEngine;
 using NUnit.Framework;
 using BigInt = System.Numerics.BigInteger;
 
-namespace Extensions.Unity.PlayerPrefsEx.Tests
+namespace Extensions.Unity.PlayerPrefsEx.Editor.Tests
 {
     public class TestStaticAPI
     {
         const string Key = "PlayerPrefsEx-TestKey";
 
-        Type[] types = new[] 
+        Type[] types = new[]
         {
             typeof(BigInt),
             typeof(bool),
@@ -33,46 +33,46 @@ namespace Extensions.Unity.PlayerPrefsEx.Tests
         {
             DeleteKeyAllTypes(Key);
 
-            Assert.AreEqual("", 
+            Assert.AreEqual("",
                 PlayerPrefsEx.GetString(Key));
-            
-            Assert.AreEqual("", 
+
+            Assert.AreEqual("",
                 PlayerPrefsEx.GetString(Key, null));
-            
-            Assert.AreEqual("", 
+
+            Assert.AreEqual("",
                 PlayerPrefsEx.GetString(Key, default));
-            
-            Assert.AreEqual("", 
+
+            Assert.AreEqual("",
                 PlayerPrefsEx.GetString(Key, ""));
-            
-            Assert.AreEqual("abc", 
+
+            Assert.AreEqual("abc",
                 PlayerPrefsEx.GetString(Key, "abc"));
-            
-            Assert.AreEqual(1, 
+
+            Assert.AreEqual(1,
                 PlayerPrefsEx.GetInt(Key, 1));
-            
-            Assert.AreEqual(1f, 
+
+            Assert.AreEqual(1f,
                 PlayerPrefsEx.GetFloat(Key, 1f));
-            
-            Assert.AreEqual(true, 
+
+            Assert.AreEqual(true,
                 PlayerPrefsEx.GetBool(Key, true));
-            
-            Assert.AreEqual(BigInt.One, 
+
+            Assert.AreEqual(BigInt.One,
                 PlayerPrefsEx.GetBigInt(Key, BigInt.One));
-            
-            Assert.AreEqual(DateTime.MaxValue - TimeSpan.FromDays(100), 
+
+            Assert.AreEqual(DateTime.MaxValue - TimeSpan.FromDays(100),
                 PlayerPrefsEx.GetDateTime(Key, DateTime.MaxValue - TimeSpan.FromDays(100)));
 
-            Assert.AreEqual(Vector2.one * 3, 
+            Assert.AreEqual(Vector2.one * 3,
                 PlayerPrefsEx.GetVector2(Key, Vector2.one * 3));
 
-            Assert.AreEqual(Vector2Int.one * 3, 
+            Assert.AreEqual(Vector2Int.one * 3,
                 PlayerPrefsEx.GetVector2Int(Key, Vector2Int.one * 3));
 
-            Assert.AreEqual(Vector3.one * 3, 
+            Assert.AreEqual(Vector3.one * 3,
                 PlayerPrefsEx.GetVector3(Key, Vector3.one * 3));
 
-            Assert.AreEqual(Vector3Int.one * 3, 
+            Assert.AreEqual(Vector3Int.one * 3,
                 PlayerPrefsEx.GetVector3Int(Key, Vector3Int.one * 3));
         }
 
@@ -82,31 +82,31 @@ namespace Extensions.Unity.PlayerPrefsEx.Tests
             DeleteKeyAllTypes(Key);
 
             PlayerPrefsEx.SetString(Key, "");
-            Assert.AreEqual("", 
+            Assert.AreEqual("",
                 PlayerPrefsEx.GetString(Key));
 
             PlayerPrefsEx.SetString(Key, null);
-            Assert.AreEqual("", 
+            Assert.AreEqual("",
                 PlayerPrefsEx.GetString(Key));
 
             PlayerPrefsEx.SetString(Key, default);
-            Assert.AreEqual("", 
+            Assert.AreEqual("",
                 PlayerPrefsEx.GetString(Key));
 
             PlayerPrefsEx.SetString(Key, "");
-            Assert.AreEqual("", 
+            Assert.AreEqual("",
                 PlayerPrefsEx.GetString(Key, ""));
 
             PlayerPrefsEx.SetString(Key, "abc");
-            Assert.AreEqual("abc", 
+            Assert.AreEqual("abc",
                 PlayerPrefsEx.GetString(Key));
 
             PlayerPrefsEx.SetInt(Key, 10);
-            Assert.AreEqual(10, 
+            Assert.AreEqual(10,
                 PlayerPrefsEx.GetInt(Key));
 
             PlayerPrefsEx.SetFloat(Key, 10f);
-            Assert.AreEqual(10f, 
+            Assert.AreEqual(10f,
                 PlayerPrefsEx.GetFloat(Key));
 
             PlayerPrefsEx.SetBool(Key, true);
