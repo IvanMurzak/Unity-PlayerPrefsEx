@@ -4,6 +4,7 @@
 [![OpenUPM](https://img.shields.io/badge/dynamic/json?label=Downloads&labelColor=333A41&query=%24.downloads&suffix=%2Fmonth&url=https%3A%2F%2Fpackage.openupm.com%2Fdownloads%2Fpoint%2Flast-month%2Fextensions.unity.playerprefsex)](https://openupm.com/packages/extensions.unity.playerprefsex/)
 [![Unity Editor](https://img.shields.io/badge/Editor-X?style=flat&logo=unity&labelColor=333A41&color=2A2A2A 'Unity Editor supported')](https://unity.com/releases/editor/archive)
 [![Unity Runtime](https://img.shields.io/badge/Runtime-X?style=flat&logo=unity&labelColor=333A41&color=2A2A2A 'Unity Runtime supported')](https://unity.com/releases/editor/archive)
+[![r](https://github.com/IvanMurzak/Unity-PlayerPrefsEx/workflows/release/badge.svg 'Tests Passed')](https://github.com/IvanMurzak/Unity-PlayerPrefsEx/actions/workflows/release.yml)
 ![License](https://img.shields.io/github/license/IvanMurzak/Unity-PlayerPrefsEx?labelColor=333A41&label=License)
 [![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://stand-with-ukraine.pp.ua)
 

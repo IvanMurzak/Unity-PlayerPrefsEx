@@ -3,7 +3,7 @@ using UnityEngine;
 using NUnit.Framework;
 using BigInt = System.Numerics.BigInteger;
 
-namespace Extensions.Unity.PlayerPrefsEx.Editor.Tests
+namespace Extensions.Unity.PlayerPrefsEx.Tests.Runtime
 {
     public class TestStaticAndVariablesAPIs
     {

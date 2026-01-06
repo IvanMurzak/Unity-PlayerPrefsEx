@@ -3,13 +3,13 @@ using UnityEngine;
 using NUnit.Framework;
 using BigInt = System.Numerics.BigInteger;
 
-namespace Extensions.Unity.PlayerPrefsEx.Editor.Tests
+namespace Extensions.Unity.PlayerPrefsEx.Tests.Runtime
 {
-    public class TestEncryptedVariablesAPI
+    public class TestVariablesAPI
     {
-        const string Key = "PlayerPrefsEx-EncryptedTestKey";
+        const string Key = "PlayerPrefsEx-TestKey";
 
-        readonly Type[] types = new[]
+        Type[] types = new[]
         {
             typeof(BigInt),
             typeof(bool),
@@ -22,20 +22,18 @@ namespace Extensions.Unity.PlayerPrefsEx.Editor.Tests
             typeof(Vector3),
             typeof(Vector3Int)
         };
-
         void DeleteKeyAllTypes(string key)
         {
             foreach (var type in types)
                 PlayerPrefsEx.DeleteKey(key, type);
         }
-
         [Test]
-        public void EncryptedSharedValueBetweenVariablesString()
+        public void SharedValueBetweenVariablesAndStaticAPIsString()
         {
             DeleteKeyAllTypes(Key);
 
-            var pp1 = new PlayerPrefsEncryptedString(Key);
-            var pp2 = new PlayerPrefsEncryptedString(Key);
+            var pp1 = new PlayerPrefsString(Key);
+            var pp2 = new PlayerPrefsString(Key);
 
             pp1.Value = "abc";
             pp2.Value = "123";
@@ -46,14 +44,13 @@ namespace Extensions.Unity.PlayerPrefsEx.Editor.Tests
 
             Assert.AreEqual(pp1.Value, pp2.Value);
         }
-
         [Test]
-        public void EncryptedSharedValueBetweenVariablesInt()
+        public void SharedValueBetweenVariablesAndStaticAPIsInt()
         {
             DeleteKeyAllTypes(Key);
 
-            var pp1 = new PlayerPrefsEncryptedInt(Key);
-            var pp2 = new PlayerPrefsEncryptedInt(Key);
+            var pp1 = new PlayerPrefsInt(Key);
+            var pp2 = new PlayerPrefsInt(Key);
 
             pp1.Value = 123;
             pp2.Value = 9999;
@@ -64,14 +61,13 @@ namespace Extensions.Unity.PlayerPrefsEx.Editor.Tests
 
             Assert.AreEqual(pp1.Value, pp2.Value);
         }
-
         [Test]
-        public void EncryptedSharedValueBetweenVariablesBool()
+        public void SharedValueBetweenVariablesAndStaticAPIsBool()
         {
             DeleteKeyAllTypes(Key);
 
-            var pp1 = new PlayerPrefsEncryptedBool(Key);
-            var pp2 = new PlayerPrefsEncryptedBool(Key);
+            var pp1 = new PlayerPrefsBool(Key);
+            var pp2 = new PlayerPrefsBool(Key);
 
             pp1.Value = true;
             pp2.Value = false;
@@ -82,14 +78,13 @@ namespace Extensions.Unity.PlayerPrefsEx.Editor.Tests
 
             Assert.AreEqual(pp1.Value, pp2.Value);
         }
-
         [Test]
-        public void EncryptedSharedValueBetweenVariablesFloat()
+        public void SharedValueBetweenVariablesAndStaticAPIsFloat()
         {
             DeleteKeyAllTypes(Key);
 
-            var pp1 = new PlayerPrefsEncryptedFloat(Key);
-            var pp2 = new PlayerPrefsEncryptedFloat(Key);
+            var pp1 = new PlayerPrefsFloat(Key);
+            var pp2 = new PlayerPrefsFloat(Key);
 
             pp1.Value = 10f;
             pp2.Value = 992f;
@@ -100,14 +95,13 @@ namespace Extensions.Unity.PlayerPrefsEx.Editor.Tests
 
             Assert.AreEqual(pp1.Value, pp2.Value);
         }
-
         [Test]
-        public void EncryptedSharedValueBetweenVariablesBigInt()
+        public void SharedValueBetweenVariablesAndStaticAPIsBigInt()
         {
             DeleteKeyAllTypes(Key);
 
-            var pp1 = new PlayerPrefsEncryptedBigInt(Key);
-            var pp2 = new PlayerPrefsEncryptedBigInt(Key);
+            var pp1 = new PlayerPrefsBigInt(Key);
+            var pp2 = new PlayerPrefsBigInt(Key);
 
             pp1.Value = 10;
             pp2.Value = 992;
@@ -118,14 +112,13 @@ namespace Extensions.Unity.PlayerPrefsEx.Editor.Tests
 
             Assert.AreEqual(pp1.Value, pp2.Value);
         }
-
         [Test]
-        public void EncryptedSharedValueBetweenVariablesDateTime()
+        public void SharedValueBetweenVariablesAndStaticAPIsDateTime()
         {
             DeleteKeyAllTypes(Key);
 
-            var pp1 = new PlayerPrefsEncryptedDateTime(Key);
-            var pp2 = new PlayerPrefsEncryptedDateTime(Key);
+            var pp1 = new PlayerPrefsDateTime(Key);
+            var pp2 = new PlayerPrefsDateTime(Key);
 
             pp1.Value = DateTime.MaxValue - TimeSpan.FromDays(20);
             pp2.Value = DateTime.MaxValue - TimeSpan.FromDays(200);
@@ -136,14 +129,13 @@ namespace Extensions.Unity.PlayerPrefsEx.Editor.Tests
 
             Assert.AreEqual(pp1.Value, pp2.Value);
         }
-
         [Test]
-        public void EncryptedSharedValueBetweenVariablesVector2()
+        public void SharedValueBetweenVariablesAndStaticAPIsVector2()
         {
             DeleteKeyAllTypes(Key);
 
-            var pp1 = new PlayerPrefsEncryptedVector2(Key);
-            var pp2 = new PlayerPrefsEncryptedVector2(Key);
+            var pp1 = new PlayerPrefsVector2(Key);
+            var pp2 = new PlayerPrefsVector2(Key);
 
             pp1.Value = Vector2.left;
             pp2.Value = Vector2.up;
@@ -154,14 +146,13 @@ namespace Extensions.Unity.PlayerPrefsEx.Editor.Tests
 
             Assert.AreEqual(pp1.Value, pp2.Value);
         }
-
         [Test]
-        public void EncryptedSharedValueBetweenVariablesVector2Int()
+        public void SharedValueBetweenVariablesAndStaticAPIsVector2Int()
         {
             DeleteKeyAllTypes(Key);
 
-            var pp1 = new PlayerPrefsEncryptedVector2Int(Key);
-            var pp2 = new PlayerPrefsEncryptedVector2Int(Key);
+            var pp1 = new PlayerPrefsVector2Int(Key);
+            var pp2 = new PlayerPrefsVector2Int(Key);
 
             pp1.Value = Vector2Int.left;
             pp2.Value = Vector2Int.up;
@@ -172,14 +163,13 @@ namespace Extensions.Unity.PlayerPrefsEx.Editor.Tests
 
             Assert.AreEqual(pp1.Value, pp2.Value);
         }
-
         [Test]
-        public void EncryptedSharedValueBetweenVariablesVector3()
+        public void SharedValueBetweenVariablesAndStaticAPIsVector3()
         {
             DeleteKeyAllTypes(Key);
 
-            var pp1 = new PlayerPrefsEncryptedVector3(Key);
-            var pp2 = new PlayerPrefsEncryptedVector3(Key);
+            var pp1 = new PlayerPrefsVector3(Key);
+            var pp2 = new PlayerPrefsVector3(Key);
 
             pp1.Value = Vector3.left;
             pp2.Value = Vector3.up;
@@ -190,14 +180,13 @@ namespace Extensions.Unity.PlayerPrefsEx.Editor.Tests
 
             Assert.AreEqual(pp1.Value, pp2.Value);
         }
-
         [Test]
-        public void EncryptedSharedValueBetweenVariablesVector3Int()
+        public void SharedValueBetweenVariablesAndStaticAPIsVector3Int()
         {
             DeleteKeyAllTypes(Key);
 
-            var pp1 = new PlayerPrefsEncryptedVector3Int(Key);
-            var pp2 = new PlayerPrefsEncryptedVector3Int(Key);
+            var pp1 = new PlayerPrefsVector3Int(Key);
+            var pp2 = new PlayerPrefsVector3Int(Key);
 
             pp1.Value = Vector3Int.left;
             pp2.Value = Vector3Int.up;
@@ -210,7 +199,7 @@ namespace Extensions.Unity.PlayerPrefsEx.Editor.Tests
         }
 
         [Test]
-        public void EncryptedNonSharedValueBetweenSameKeyDifferentTypes()
+        public void NonSharedValueBetweenSameKeyDifferentTypes()
         {
             DeleteKeyAllTypes(Key);
 
@@ -225,16 +214,16 @@ namespace Extensions.Unity.PlayerPrefsEx.Editor.Tests
             var vVector3 = Vector3.one * 3323.123f;
             var vVector3Int = Vector3Int.one * 2767;
 
-            var ppBigInt = new PlayerPrefsEncryptedBigInt(Key, vBigInt);
-            var ppBool = new PlayerPrefsEncryptedBool(Key, vBool);
-            var ppDateTime = new PlayerPrefsEncryptedDateTime(Key, vDateTime);
-            var ppFloat = new PlayerPrefsEncryptedFloat(Key, vFloat);
-            var ppInt = new PlayerPrefsEncryptedInt(Key, vInt);
-            var ppString = new PlayerPrefsEncryptedString(Key, vString);
-            var ppVector2 = new PlayerPrefsEncryptedVector2(Key, vVector2);
-            var ppVector2Int = new PlayerPrefsEncryptedVector2Int(Key, vVector2Int);
-            var ppVector3 = new PlayerPrefsEncryptedVector3(Key, vVector3);
-            var ppVector3Int = new PlayerPrefsEncryptedVector3Int(Key, vVector3Int);
+            var ppBigInt = new PlayerPrefsBigInt(Key, vBigInt);
+            var ppBool = new PlayerPrefsBool(Key, vBool);
+            var ppDateTime = new PlayerPrefsDateTime(Key, vDateTime);
+            var ppFloat = new PlayerPrefsFloat(Key, vFloat);
+            var ppInt = new PlayerPrefsInt(Key, vInt);
+            var ppString = new PlayerPrefsString(Key, vString);
+            var ppVector2 = new PlayerPrefsVector2(Key, vVector2);
+            var ppVector2Int = new PlayerPrefsVector2Int(Key, vVector2Int);
+            var ppVector3 = new PlayerPrefsVector3(Key, vVector3);
+            var ppVector3Int = new PlayerPrefsVector3Int(Key, vVector3Int);
 
             Assert.AreEqual(vBigInt, ppBigInt.Value);
             Assert.AreEqual(vBool, ppBool.Value);
@@ -246,25 +235,6 @@ namespace Extensions.Unity.PlayerPrefsEx.Editor.Tests
             Assert.AreEqual(vVector2Int, ppVector2Int.Value);
             Assert.AreEqual(vVector3, ppVector3.Value);
             Assert.AreEqual(vVector3Int, ppVector3Int.Value);
-        }
-
-        [Test]
-        public void EncryptedVariableValueIsNotPlainText()
-        {
-            DeleteKeyAllTypes(Key);
-
-            var testValue = "SensitivePassword123";
-            var pp = new PlayerPrefsEncryptedString(Key);
-            pp.Value = testValue;
-
-            // Get the raw stored value
-            var storedValue = UnityEngine.PlayerPrefs.GetString(pp.InternalKey);
-
-            // The stored value should not equal the plain text
-            Assert.AreNotEqual(testValue, storedValue);
-
-            // The decrypted value should equal the original
-            Assert.AreEqual(testValue, pp.Value);
         }
     }
 }

@@ -55,5 +55,6 @@
         "decryptor",
         "Encryptor",
         "Prefs"
-    ]
+    ],
+    "dotnet.defaultSolution": "Unity-Package.slnx"
 }
