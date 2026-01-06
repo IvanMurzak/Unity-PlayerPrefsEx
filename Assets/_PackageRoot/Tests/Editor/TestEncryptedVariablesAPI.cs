@@ -9,7 +9,7 @@ namespace Extensions.Unity.PlayerPrefsEx.Tests
     {
         const string Key = "PlayerPrefsEx-EncryptedTestKey";
 
-        Type[] types = new[]
+        readonly Type[] types = new[]
         {
             typeof(BigInt),
             typeof(bool),
