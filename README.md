@@ -1,6 +1,11 @@
-# Unity PlayerPrefsEx
+# [Unity PlayerPrefsEx](https://github.com/IvanMurzak/Unity-PlayerPrefsEx)
 
-![npm](https://img.shields.io/npm/v/extensions.unity.playerprefsex) [![openupm](https://img.shields.io/npm/v/extensions.unity.playerprefsex?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/extensions.unity.playerprefsex/) ![License](https://img.shields.io/github/license/IvanMurzak/Unity-PlayerPrefsEx) [![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://stand-with-ukraine.pp.ua)
+[![OpenUPM](https://img.shields.io/npm/v/extensions.unity.playerprefsex?label=OpenUPM&labelColor=333A41&registry_uri=https://package.openupm.com)](https://openupm.com/packages/extensions.unity.playerprefsex/)
+[![OpenUPM](https://img.shields.io/badge/dynamic/json?label=Downloads&labelColor=333A41&query=%24.downloads&suffix=%2Fmonth&url=https%3A%2F%2Fpackage.openupm.com%2Fdownloads%2Fpoint%2Flast-month%2Fextensions.unity.playerprefsex)](https://openupm.com/packages/extensions.unity.playerprefsex/)
+[![Unity Editor](https://img.shields.io/badge/Editor-X?style=flat&logo=unity&labelColor=333A41&color=2A2A2A 'Unity Editor supported')](https://unity.com/releases/editor/archive)
+[![Unity Runtime](https://img.shields.io/badge/Runtime-X?style=flat&logo=unity&labelColor=333A41&color=2A2A2A 'Unity Runtime supported')](https://unity.com/releases/editor/archive)
+![License](https://img.shields.io/github/license/IvanMurzak/Unity-PlayerPrefsEx?labelColor=333A41&label=License)
+[![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://stand-with-ukraine.pp.ua)
 
 PlayerPrefsEx is a lightweight package that is an extended version of PlayerPrefs from Unity. Under the hood, it uses the same PlayerPrefs system but creates a flexible wrapper for the default system.
 
@@ -10,15 +15,15 @@ PlayerPrefsEx is a lightweight package that is an extended version of PlayerPref
 using Extensions.Unity.PlayerPrefsEx;
 
 // Static API Getters                    // Static API Setters
-PlayerPrefsEx.GetInt("key");             PlayerPrefsEx.SetInt("key", 10);         
-PlayerPrefsEx.GetBool("key");            PlayerPrefsEx.SetBool("key", false);        
-PlayerPrefsEx.GetFloat("key");           PlayerPrefsEx.SetFloat("key", 2.123f);       
-PlayerPrefsEx.GetString("key");          PlayerPrefsEx.SetString("key", "hello world");      
+PlayerPrefsEx.GetInt("key");             PlayerPrefsEx.SetInt("key", 10);
+PlayerPrefsEx.GetBool("key");            PlayerPrefsEx.SetBool("key", false);
+PlayerPrefsEx.GetFloat("key");           PlayerPrefsEx.SetFloat("key", 2.123f);
+PlayerPrefsEx.GetString("key");          PlayerPrefsEx.SetString("key", "hello world");
 PlayerPrefsEx.GetBigInt("key");          PlayerPrefsEx.SetBigInt("key", BigInteger.Parse("100"));
-PlayerPrefsEx.GetDateTime("key");        PlayerPrefsEx.SetDateTime("key", DateTime.Now);    
-PlayerPrefsEx.GetVector2("key");         PlayerPrefsEx.SetVector2("key", Vector2.up);     
-PlayerPrefsEx.GetVector2Int("key");      PlayerPrefsEx.SetVector2Int("key", Vector2Int.up);  
-PlayerPrefsEx.GetVector3("key");         PlayerPrefsEx.SetVector3("key", Vector3.up);     
+PlayerPrefsEx.GetDateTime("key");        PlayerPrefsEx.SetDateTime("key", DateTime.Now);
+PlayerPrefsEx.GetVector2("key");         PlayerPrefsEx.SetVector2("key", Vector2.up);
+PlayerPrefsEx.GetVector2Int("key");      PlayerPrefsEx.SetVector2Int("key", Vector2Int.up);
+PlayerPrefsEx.GetVector3("key");         PlayerPrefsEx.SetVector3("key", Vector3.up);
 PlayerPrefsEx.GetVector3Int("key");      PlayerPrefsEx.SetVector3Int("key", Vector3Int.up);
 
 // Static API Getters Generic            // Static API Setters Generic
@@ -52,7 +57,16 @@ PlayerPrefsBool    PlayerPrefsVector3     PlayerPrefsJson<T>
 PlayerPrefsString  PlayerPrefsVector3Int  PlayerPrefsEx<T>
 ```
 
-# Installation 
+### Encrypted types (AES-256)
+
+``` C#
+PlayerPrefsEncryptedInt     PlayerPrefsEncryptedVector2     PlayerPrefsEncryptedBigInt
+PlayerPrefsEncryptedFloat   PlayerPrefsEncryptedVector2Int  PlayerPrefsEncryptedDateTime
+PlayerPrefsEncryptedBool    PlayerPrefsEncryptedVector3     PlayerPrefsEncryptedJson<T>
+PlayerPrefsEncryptedString  PlayerPrefsEncryptedVector3Int
+```
+
+# Installation
 
 When you package is distributed, you can install it into any Unity project.
 
@@ -67,6 +81,8 @@ openupm add extensions.unity.playerprefsex
 # Features
 
  ✔️ Key is encrypted. Encrypted depends on a device. Much more harder for hackers to hack your data. Saved data at one device won't work on another one if someone copied it from device to device. In the same time for UnityEditor the device identifier is a constant. That means data copied between devices could be opened if you work on multiple machines and want to save/sent/load saved data on different machines.
+
+ ✔️ **Value encryption (AES-256)**. Optionally store values in encrypted format using AES-256 encryption with device-based key derivation. Perfect for storing sensitive data like passwords, tokens, or game progress that you want to protect from tampering.
 
  ✔️ Create variable instance of any PlayerPrefs, work with it as a regular variable
 
@@ -87,14 +103,14 @@ player.Value = new Player();
  ``` C#
  var variableA = new PlayerPrefsString("message");
  var variableB = new PlayerPrefsString("message");
- 
+
  variableA.Value = "hello world";
- 
+
  Debug.Log(variableA.Value); // "hello world";
  Debug.Log(variableB.Value); // "hello world";
- 
+
  // variableA.Value == variableB.Value
- // the same memory spot, just two links 
+ // the same memory spot, just two links
  ```
 
  ✔️ Generating unique `Key` for each type. No way to overlap value of another type by same key.
@@ -137,6 +153,48 @@ You can make it in runtime by simply change value of `PlayerPrefsEx.Settings.Uni
 PlayerPrefsEx.Settings.UniqueKeyPerDevice = true;
 ```
 
+# Encrypted Value Storage
+
+PlayerPrefsEx supports AES-256 encryption for storing sensitive data. The encryption key is derived from the device's unique identifier, meaning encrypted data can only be read on the same device it was written on.
+
+> ⚠️ In Unity Editor, a constant key is used for consistency across development machines.
+
+## Encrypted Static API Usage
+
+``` C#
+using Extensions.Unity.PlayerPrefsEx;
+
+// Encrypted Static API Getters                      // Encrypted Static API Setters
+PlayerPrefsEx.GetEncryptedInt("key");                PlayerPrefsEx.SetEncryptedInt("key", 10);
+PlayerPrefsEx.GetEncryptedBool("key");               PlayerPrefsEx.SetEncryptedBool("key", false);
+PlayerPrefsEx.GetEncryptedFloat("key");              PlayerPrefsEx.SetEncryptedFloat("key", 2.123f);
+PlayerPrefsEx.GetEncryptedString("key");             PlayerPrefsEx.SetEncryptedString("key", "secret");
+PlayerPrefsEx.GetEncryptedBigInt("key");             PlayerPrefsEx.SetEncryptedBigInt("key", BigInteger.Parse("100"));
+PlayerPrefsEx.GetEncryptedDateTime("key");           PlayerPrefsEx.SetEncryptedDateTime("key", DateTime.Now);
+PlayerPrefsEx.GetEncryptedVector2("key");            PlayerPrefsEx.SetEncryptedVector2("key", Vector2.up);
+PlayerPrefsEx.GetEncryptedVector2Int("key");         PlayerPrefsEx.SetEncryptedVector2Int("key", Vector2Int.up);
+PlayerPrefsEx.GetEncryptedVector3("key");            PlayerPrefsEx.SetEncryptedVector3("key", Vector3.up);
+PlayerPrefsEx.GetEncryptedVector3Int("key");         PlayerPrefsEx.SetEncryptedVector3Int("key", Vector3Int.up);
+
+// Encrypted Static API Getters Generic              // Encrypted Static API Setters Generic
+PlayerPrefsEx.GetEncryptedJson<Player>("key");       PlayerPrefsEx.SetEncryptedJson<Player>("key", new Player());
+```
+
+## Encrypted Variables API Usage
+
+``` C#
+// Encrypted Variables API
+var password = new PlayerPrefsEncryptedString("password");
+password.Value = "my_secret_password";  // Stored encrypted
+
+var score = new PlayerPrefsEncryptedInt("highscore");
+score.Value = 9999;  // Stored encrypted
+
+// Encrypted Variables API Generic
+var player = new PlayerPrefsEncryptedJson<Player>("player");
+player.Value = new Player();  // JSON serialized and encrypted
+```
+
 # Custom data types
 
 There are two ways to do that.
@@ -164,8 +222,8 @@ enemy.Value = new Enemy();
 
 public class PlayerPrefsEnemy : PlayerPrefsEx<Enemy>
 {
-    public PlayerPrefsEnemy(string key, Enemy defaultValue = default) : base(key, defaultValue) 
-    { 
+    public PlayerPrefsEnemy(string key, Enemy defaultValue = default) : base(key, defaultValue)
+    {
 
     }
 
