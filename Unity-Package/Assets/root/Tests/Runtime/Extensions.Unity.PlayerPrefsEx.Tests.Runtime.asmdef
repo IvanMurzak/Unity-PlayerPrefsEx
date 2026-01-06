@@ -1,15 +1,15 @@
 {
-    "name": "Extensions.Unity.PlayerPrefsEx.Tests.Editor",
+    "name": "Extensions.Unity.PlayerPrefsEx.Tests.Runtime",
     "rootNamespace": "Extensions.Unity.PlayerPrefsEx.Tests",
     "references": [
-        "UnityEditor.TestRunner",
+        "UnityEngine.TestRunner",
         "Extensions.Unity.PlayerPrefsEx",
         "Extensions.Unity.PlayerPrefsEx.Tests.Shared"
     ],
-    "includePlatforms": [
+    "includePlatforms": [],
+    "excludePlatforms": [
         "Editor"
     ],
-    "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": true,
     "precompiledReferences": [
