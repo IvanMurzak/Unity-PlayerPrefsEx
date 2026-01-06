@@ -51,9 +51,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "cSpell.words": [
-        "decryptor",
-        "Encryptor",
-        "Prefs"
-    ]
+    "dotnet.defaultSolution": "2022.3.62f3.sln"
 }
