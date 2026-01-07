@@ -1,4 +1,4 @@
-# [Unity PlayerPrefsEx](https://github.com/IvanMurzak/Unity-PlayerPrefsEx)
+# [Unity PlayerPrefsEx](https://github.com/IvanMurzak/Unity-PlayerPrefsEx?tab=readme-ov-file#unity-playerprefsex)
 
 [![OpenUPM](https://img.shields.io/npm/v/extensions.unity.playerprefsex?label=OpenUPM&labelColor=333A41&registry_uri=https://package.openupm.com)](https://openupm.com/packages/extensions.unity.playerprefsex/)
 [![OpenUPM](https://img.shields.io/badge/dynamic/json?label=Downloads&labelColor=333A41&query=%24.downloads&suffix=%2Fmonth&url=https%3A%2F%2Fpackage.openupm.com%2Fdownloads%2Fpoint%2Flast-month%2Fextensions.unity.playerprefsex)](https://openupm.com/packages/extensions.unity.playerprefsex/)
