@@ -16,7 +16,7 @@ namespace Extensions.Unity.PlayerPrefsEx.Installer
     public static partial class Installer
     {
         public const string PackageId = "extensions.unity.playerprefsex";
-        public const string Version = "2.1.0";
+        public const string Version = "2.1.1";
 
         static Installer()
         {
