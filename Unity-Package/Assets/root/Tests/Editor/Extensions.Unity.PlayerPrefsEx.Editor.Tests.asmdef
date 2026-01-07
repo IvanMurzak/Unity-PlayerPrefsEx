@@ -1,6 +1,6 @@
 {
     "name": "Extensions.Unity.PlayerPrefsEx.Editor.Tests",
-    "rootNamespace": "Extensions.Unity.PlayerPrefsEx.Tests",
+    "rootNamespace": "",
     "references": [
         "UnityEditor.TestRunner",
         "UnityEngine.TestRunner",
@@ -11,11 +11,9 @@
     ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
-    "overrideReferences": true,
-    "precompiledReferences": [
-        "nunit.framework.dll"
-    ],
-    "autoReferenced": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
     "defineConstraints": [],
     "versionDefines": [],
     "noEngineReferences": false
