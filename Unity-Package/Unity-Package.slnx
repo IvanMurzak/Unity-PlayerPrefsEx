@@ -1,5 +1,4 @@
 ﻿<Solution>
-  <Project Path="Extensions.Unity.PlayerPrefsEx.Tests.csproj" />
   <Project Path="Extensions.Unity.PlayerPrefsEx.csproj" />
   <Project Path="Extensions.Unity.PlayerPrefsEx.Sample.csproj" />
   <Project Path="Extensions.Unity.PlayerPrefsEx.Editor.Tests.csproj" />
