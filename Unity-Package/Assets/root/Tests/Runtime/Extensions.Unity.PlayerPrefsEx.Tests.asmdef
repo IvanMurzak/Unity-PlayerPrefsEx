@@ -1,6 +1,6 @@
 {
     "name": "Extensions.Unity.PlayerPrefsEx.Tests",
-    "rootNamespace": "Extensions.Unity.PlayerPrefsEx.Tests",
+    "rootNamespace": "",
     "references": [
         "UnityEngine.TestRunner",
         "Extensions.Unity.PlayerPrefsEx"
@@ -12,8 +12,10 @@
     "precompiledReferences": [
         "nunit.framework.dll"
     ],
-    "autoReferenced": false,
-    "defineConstraints": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
     "versionDefines": [],
     "noEngineReferences": false
 }
