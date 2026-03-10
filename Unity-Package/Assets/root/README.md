@@ -94,7 +94,7 @@ This package includes tests but does not load them in the Unity Test Runner by d
 }
 ```
 
-See [Unity's documentation on testables](https://docs.unity3d.com/Manual/upm-manifestPrj.html#testables) and [Adding tests to a package](https://docs.unity3d.com/Manual/cus-tests.html).
+See [Unity's documentation on testables](https://docs.unity3d.com/Manual/upm-manifestPrj.html#testables) and [Add tests to your package](https://docs.unity3d.com/Manual/cus-tests.html).
 
 # Features
 
