@@ -81,14 +81,16 @@ openupm add extensions.unity.playerprefsex
 
 ## Running the package tests (opt-in)
 
-This package includes tests but does not load them in the Unity Test Runner by default. To run the package's tests in your project, add the package to the `testables` array in your project manifest (`Packages/manifest.json`):
+This package includes tests but does not load them in the Unity Test Runner by default. To run the package's tests in your project, add the package name to the existing `testables` array in your project manifest (`Packages/manifest.json`). For example, your manifest might include:
 
 ```json
 {
   "dependencies": {
-      "extensions.unity.playerprefsex": "X.X.X"
-   },
-  "testables": ["extensions.unity.playerprefsex"]
+    "extensions.unity.playerprefsex": "X.X.X"
+  },
+  "testables": [
+    "extensions.unity.playerprefsex"
+  ]
 }
 ```
 
