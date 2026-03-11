@@ -79,6 +79,23 @@ When you package is distributed, you can install it into any Unity project.
 openupm add extensions.unity.playerprefsex
 ```
 
+## Running the package tests (opt-in)
+
+This package includes tests but does not load them in the Unity Test Runner by default. To run the package's tests in your project, add the package name to the existing `testables` array in your project manifest (`Packages/manifest.json`). For example, your manifest might include:
+
+```json
+{
+  "dependencies": {
+    "extensions.unity.playerprefsex": "X.X.X"
+  },
+  "testables": [
+    "extensions.unity.playerprefsex"
+  ]
+}
+```
+
+See [Unity's documentation on testables](https://docs.unity3d.com/Manual/upm-manifestPrj.html#testables) and [Add tests to your package](https://docs.unity3d.com/Manual/cus-tests.html).
+
 # Features
 
  ✔️ Key is encrypted. Encrypted depends on a device. Much more harder for hackers to hack your data. Saved data at one device won't work on another one if someone copied it from device to device. In the same time for UnityEditor the device identifier is a constant. That means data copied between devices could be opened if you work on multiple machines and want to save/sent/load saved data on different machines.

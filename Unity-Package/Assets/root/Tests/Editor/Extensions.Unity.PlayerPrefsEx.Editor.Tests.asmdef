@@ -2,19 +2,20 @@
     "name": "Extensions.Unity.PlayerPrefsEx.Editor.Tests",
     "rootNamespace": "",
     "references": [
-        "UnityEditor.TestRunner",
-        "UnityEngine.TestRunner",
         "Extensions.Unity.PlayerPrefsEx"
     ],
     "includePlatforms": [
         "Editor"
     ],
     "excludePlatforms": [],
+    "optionalUnityReferences": ["TestAssemblies"],
     "allowUnsafeCode": false,
     "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": true,
-    "defineConstraints": [],
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
     "versionDefines": [],
     "noEngineReferences": false
 }
